@@ -875,7 +875,7 @@ funcion.sendNotificacion = (actividad) => {
 var rule = new schedule.RecurrenceRule();
 //rule.hour = 0;
 //rule.minute = 0;
-rule.second = 1;
+//rule.second = 1;
 
 schedule.scheduleJob(rule, function () {
 
