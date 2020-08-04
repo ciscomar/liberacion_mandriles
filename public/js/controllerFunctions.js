@@ -844,7 +844,7 @@ funcion.sendNotificacion = (actividad) => {
 
                if (vencidos.length > 0) {
 
-                    db.query(`SELECT correo FROM mandril_notificar WHERE dep${vencidos[0].activ_area}>=2`, function (err, resultc, fields) {
+                    db.query(`SELECT correo FROM mandril_notificar WHERE dep${vencidos[0].activ_area}>=1`, function (err, resultc, fields) {
 
                         for (let i = 0; i < resultc.length; i++) {
 
@@ -873,9 +873,9 @@ funcion.sendNotificacion = (actividad) => {
 
 //Enviar correos cada determinado tiempo
 var rule = new schedule.RecurrenceRule();
-//rule.hour = 0;
-//rule.minute = 0;
-rule.second = 1;
+rule.hour = 7;
+rule.minute = 0;
+rule.second = 0;
 
 schedule.scheduleJob(rule, function () {
 
