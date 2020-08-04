@@ -761,34 +761,55 @@ controller.mandriles_GET = (req, res) => {
 
 controller.guardar_notificar_POST = (req, res) => {
 
+    
+    esc = req.body.esc
+
     correo = req.body.correo
+
     dep1 = req.body.dep1
+
     if (dep1 == undefined) {
         dep1 = 0
+    }else if(esc==1 && dep1==1){
+     
+        dep1=2
     }
+    console.log(dep1)
     dep2 = req.body.dep2
     if (dep2 == undefined) {
         dep2 = 0
+    }else if(esc==1 && dep2==1){
+        dep2=2
     }
     dep3 = req.body.dep3
     if (dep3 == undefined) {
         dep3 = 0
+    }else if(esc==1 && dep3==1){
+        dep3=2
     }
     dep4 = req.body.dep4
     if (dep4 == undefined) {
         dep4 = 0
+    }else if(esc==1 && dep4==1){
+        dep4=2
     }
     dep5 = req.body.dep5
     if (dep5 == undefined) {
         dep5 = 0
+    }else if(esc==1 && dep5==1){
+        dep5=2
     }
     dep6 = req.body.dep6
     if (dep6 == undefined) {
         dep6 = 0
+    }else if(esc==1 && dep6==1){
+        dep6=2
     }
     dep7 = req.body.dep7
     if (dep7 == undefined) {
         dep7 = 0
+    }else if(esc==1 && dep7==1){
+        dep7=2
     }
 
 
