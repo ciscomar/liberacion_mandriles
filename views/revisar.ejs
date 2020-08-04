@@ -1,0 +1,629 @@
+<% include ./static/header %>
+<% include ./static/sidebar %>
+<% include ./static/navbar %>
+
+<div class="col-xl-12 jumbotron jumbotron-fluid animated bounceInDown">
+
+
+    <div class="container">
+
+        <%if(mandrilStatus>9){%>
+
+        <div class="row">
+
+            <div class="col-lg-11 text-right">
+                <div id="printButton">
+                    <button type="button" id="printJSPDFButton" class="btn btn-danger">
+                        <span id="printloading" role="status" style="width: 3rem; height: 3rem;"></span>
+                        <span class="fas fa-file-pdf" style="font-size: 3rem;"></span>
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+        <%}%>
+
+        <img src="/img/TristoneLogo.png" class="rounded mx-auto d-block " alt="Tristone Flowtech">
+        <h1 class="display-4 text-center animated slow">Informacion del Mandril</h1>
+        <p class="lead text-center"></p>
+
+
+        
+
+        <div class="card bg-light ">
+            
+            <div class=" card-header text-white bg-<%=classColor%> text-center text-capitalize">Informacion
+            </div>
+            <div class="card-body col-lg-12">
+                <div class="container-fluid">
+                <table class="table">
+                    <thead class="thead-dark">
+                       
+                            
+                        
+                        <tr>
+                            <td>ID Mandril:</td>
+                            <td><%=data.mandril_id%>-<%=data.mandril_consec%></td>
+        </tr>
+        <tr>
+            <td>Numero de Parte:</td>
+            <td><%=data.mandril_numparte%></td>
+        </tr>
+        <tr>
+            <td>Plataforma:</td>
+            <td><%=data.mandril_plat%></td>
+        </tr>
+        <tr>
+            <td>Motivo Liberacion:</td>
+            <td><%=data.mandril_motivo%></td>
+        </tr>
+        <tr>
+            <td>Tipo Mandril:</td>
+            <td><%=data.mandril_tipo%></td>
+        </tr>
+        <tr>
+            <td>Familia:</td>
+            <td><%=data.mandril_fam%></td>
+        </tr>
+        <tr>
+            <td>Longitud Vulcanizado:</td>
+            <td><%=data.mandril_lvulca%></td>
+        </tr>
+        <tr>
+            <td>Longitud Green:</td>
+            <td><%=data.mandril_lgreen%></td>
+        </tr>
+
+        </table>
+    </div>
+
+
+
+
+        <div class="card-header text-white bg-<%=classColor%> text-center text-capitalize col-lg-12">Open pt.</div>
+ 
+
+    <div class="row">
+        <div class="col-6">
+        <div class="card-header text-white bg-dark text-center text-capitalize">Procesos</div>
+    </div>
+    <dib class="col-6">
+        <div class="card-header text-white bg-dark text-center text-capitalize">Laboratorio</div>
+    </div>
+</dib>
+    <div class="row">
+
+
+        <div class="card-body col-lg-6">
+            <table class="table">
+
+
+                <tr>
+                    <td>DE mandril real (mm):</td>
+                    <td><%=data2.ODE%></td>
+                </tr>
+                <tr>
+                    <td>DI tapa real (mm):</td>
+                    <td><%=data2.ODI%></td>
+                </tr>
+                <tr>
+                    <td>Espesor real: </td>
+                    <td><%=data2.OEsp%></td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="card-body col-lg-6">
+            <table class="table">
+                <tr>
+                    <td>DI real (mm):</td>
+                    <td><%=data2.CODI%></td>
+                </tr>
+                <tr>
+                    <td>Espesor real (mm):</td>
+                    <td><%=data2.COEsp%></td>
+                </tr>
+
+                <tr>
+                    <td>Groove (mm):</td>
+                    <td><%=data2.COG%></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+
+    <div class=" card-header text-white bg-<%=classColor%> text-center text-capitalize">Intermedio pt.</div>
+    <div class=" card-header text-white bg-dark text-center text-capitalize">Procesos</div>
+    <div class="row col-lg-12">
+
+
+        <div class="card-body col-lg-12">
+            <table class="table">
+                <tr>
+                    <td>DE mandril real (mm):</td>
+                    <td><%=data2.IDE%></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+
+        <div class="card-header text-white bg-<%=classColor%> text-center text-capitalize col-lg-12">Boss pt.</div>
+
+    <div class="row">
+        <div class="col-6">
+        <div class="card-header text-white bg-dark text-center text-capitalize">Procesos</div>
+    </div>
+    <div class="col-6">
+        <div class="card-header text-white bg-dark text-center text-capitalize">Laboratorio</div>
+    </div>
+    </div>
+
+    <div class="row">
+
+        <div class="card-body col-lg-6">
+            <table class="table">
+                <tr>
+                    <td>DE mandril real (mm):</td>
+                    <td><%=data2.BDE%></td>
+                </tr>
+                <tr>
+                    <td>DI tapa real (mm):</td>
+                    <td><%=data2.BDI%></td>
+                </tr>
+                <tr>
+                    <td>Espesor real:</td>
+                    <td><%=data2.BEsp%></td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-body col-lg-6">
+            <table class="table">
+                <tr>
+                    <td>DI real (mm):</td>
+                    <td><%=data2.CBDI%></td>
+                </tr>
+                <tr>
+                    <td>Espesor real (mm):</td>
+                    <td><%=data2.CBEsp%></td>
+                </tr>
+                <tr>
+                    <td>Groove (mm):</td>
+                    <td><%=data2.CBG%></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+<% include ./static/footer %>
+
+<script type="text/javascript" src="/js/imagenes.js"></script>
+
+
+</div>
+<%
+        if(fechaAlta!=""){
+        let date = fechaAlta
+
+        let year = date.getFullYear();
+        let month = (1 + date.getMonth()).toString().padStart(2, '0');
+        let day = date.getDate().toString().padStart(2, '0');
+
+        fechaAltaFormatted=month + '/' + day + '/' + year
+
+        let date2 = fechaLiberacion
+
+        let year2 = date2.getFullYear();
+        let month2 = (1 + date2.getMonth()).toString().padStart(2, '0');
+        let day2 = date2.getDate().toString().padStart(2, '0');
+
+        fechaLiberacionFormatted=month2 + '/' + day2 + '/' + year2
+        }else{
+            fechaAltaFormatted=""
+            fechaLiberacionFormatted=""
+        }
+
+        %>
+
+
+
+
+</html>
+
+
+<script>
+
+    $('#printJSPDFButton').click(function () {
+
+        $('#printloading').addClass('spinner-grow spinner-grow-sm');
+
+        setTimeout(() => {
+            $('#printloading').removeClass('spinner-grow spinner-grow-sm');
+        }, 1000);
+        setTimeout(printJSPDF, 100);
+    })
+
+
+    function printJSPDF() {
+        var doc = new jsPDF('portrait', '', 'letter');
+
+
+        var imgData = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAQAAABu4E3oAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkARURHzTqrE5FAAABa0lEQVQ4y83TP0hVURgA8N/7Jw6RLVESCkGIS0NEJbQIL3DKxb0WF6ekOYTGhkDcjKaGR0sQBeLq0JC4ReWQg5iRhWFoDyR4p+E+773n8t4Ft74z3O/ce37fd+65XE4dle71kssGeq4IfvjiOL7ZMGfTsb99xjd3MGzKOajjnkX7Wn737NKwZ92oZU0tD/3ivA0/NUu3P2JVEATPneGafW/USsBoCoJtY1UNNW2dEvDMVDdve2qLmw68VAWDzpZ0ODKf7CYjF72wZqIEJIW7hAteCYKPKeoDMjKfPk5QX5CRSV/TJR/MWIlAFNm73M2hdgQqrrvVi8Qo32HMZ09OQDXq+Nac3dz8j0eWcMW40JvEKAEdhPynLpIMtVNQiLqOoF5AHQ+8tpyCumoej9i0ZbxQqhbli4LZk2kFCx5b13KQ/qOEbh7UTLjvk2k7WZUhSw4LhxuP925ny5NaA264ajA7yFwEu9757v+PfwxBvZ+OV4gaAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTAxLTIxVDE3OjMwOjU2KzAwOjAw84RdjQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wMS0yMVQxNzozMDo1NiswMDowMILZ5TEAAAAASUVORK5CYII="
+
+
+        //  Imagen barra
+        //doc.addImage(logo, 'PNG', '130', 0, 150, 7, undefined, 'FAST')
+
+        // Linea separador
+        //doc.setDrawColor(91, 155, 213);
+        //doc.setLineWidth(.05);
+        //doc.line(9, 9, 270, 9)
+
+        //Margen
+        doc.rect(10, 10, 195, 260)
+
+        //  Imagen barra
+        doc.addImage(logo, 'PNG', 40, 16, 20, 10, undefined, 'FAST')
+
+        //Titulo
+        doc.setFont('helvetica')
+        doc.setFontType('bold')
+        doc.text(64, 25, 'Reporte de Liberación de Mandriles')
+
+        doc.line(15, 30, 200, 30) // horizontal line
+
+        doc.setFontSize(8)
+        doc.setFontType('normal')
+        doc.text(15, 40, 'Cliente:_____________________')
+        doc.text(30, 40, '<%=data.mandril_cliente%>')
+
+        doc.setFontSize(8)
+        doc.text(15, 48, 'Plataforma:_________________')
+        doc.text(40, 48, '<%=data.mandril_plat%>')
+
+
+        doc.setFontSize(8)
+        doc.text(68, 40, 'Ident /No. Int. De mandril:__________________')
+        doc.text(108, 40, '<%=data.mandril_id%>')
+
+
+        doc.setFontSize(8)
+        doc.text(68, 48, 'Fecha nivel de revisión (MM/DD/AA):______________')
+        doc.text(118, 48, '<%=data.mandril_revision%>')
+
+
+        doc.setFontSize(8)
+        doc.text(142, 40, 'No de parte:__________________________')
+        doc.text(173, 40, '<%=data.mandril_numparte%>')
+
+
+        doc.setFontSize(8)
+        doc.text(142, 48, 'Fecha (MM/DD/AA):____________________')
+        doc.text(175, 48, '<%=fechaAltaFormatted%>')
+
+
+        doc.setFontSize(8)
+        doc.text(15, 56, 'Motivo de Liberacion:_________________________')
+        doc.text(48, 56, '<%=data.mandril_motivo%>')
+        doc.setFontSize(8)
+        // doc.text(50, 56, 'Lanzamiento (   )')
+        // doc.text(75, 56, 'Incremento producción (   )')
+        // doc.text(115, 56, 'Remplazo (   )')
+
+        doc.setFontSize(8)
+        doc.text(15, 64, 'Tipo de Mandril:_____________________')
+        doc.text(45, 64, '<%=data.mandril_tipo%>')
+        doc.text(85, 64, 'No:__________')
+        doc.text(95, 64, '<%=data.mandril_consec%>')
+
+        doc.setFontSize(8)
+        // doc.text(43, 64, 'Prototipo (   )')
+        // doc.text(65, 64, 'Serie (   )')
+        // doc.text(85, 64, 'No:__________')
+
+        doc.setFontType('bold')
+        doc.line(15, 70, 200, 70) // horizontal line
+        doc.text(15, 76, 'Sección 1 Herramentales / Procesos:')
+        doc.line(15, 80, 200, 80) // horizontal line
+
+        //doc.text(15, 84, 'Respuestas: Marque ') 
+        //doc.addImage(imgData, 'PNG', 45, 81, 5, 5)   
+        doc.setFontType('normal')
+        doc.text(35, 89, 'Cumplimiento a reglas de diseño:')
+        //doc.text(83, 85, 'OK ') 
+        doc.addImage(imgData, 'PNG', 83, 85, 5, 5)
+        doc.text(120, 89, 'Mandril sin rebaba soldadura y filo:')
+        //doc.text(170, 85, 'OK ')   
+        doc.addImage(imgData, 'PNG', 170, 85, 5, 5)
+
+
+        doc.rect(15, 95, 185, 40)
+        doc.line(38, 95, 38, 135)//vertical line
+        doc.line(61, 95, 61, 135)//vertical line
+        doc.line(84, 95, 84, 135)//vertical line
+        doc.line(107, 95, 107, 135)//vertical line
+
+        doc.line(130, 95, 130, 118)//vertical line
+        doc.line(130, 126, 130, 135)//vertical line
+
+        doc.line(153, 95, 153, 118)//vertical line
+        doc.line(153, 126, 153, 135)//vertical line
+
+        doc.line(176, 95, 176, 118)//vertical line////
+        doc.line(176, 126, 176, 135)//vertical line////
+
+        doc.line(15, 110, 200, 110) // horizontal line
+        doc.line(15, 118, 200, 118) // horizontal line
+        doc.line(15, 126, 200, 126) // horizontal line
+
+
+        doc.text(21, 100, 'Punto')
+        doc.text(18, 104, 'coordenado')
+        doc.text(20, 108, 'del plano:')
+        doc.text(16, 115, 'Open pt.')
+        doc.text(16, 123, 'Intermedio pt.')
+        doc.text(16, 131, 'Boss pt.')
+
+        doc.text(40, 100, 'DI manguera')
+        doc.text(42, 104, 'vs. Plano')
+        doc.text(42, 108, '(min-Max) ')
+        doc.line(50, 110, 50, 135)//vertical line
+        doc.text(42, 115, '<%=data3.ODiamMin%>')
+        doc.text(42, 123, '<%=data3.IDiamMin%>')
+        doc.text(42, 132, '<%=data3.BDiamMin%>')
+        doc.text(54, 115, '<%=data3.ODiamMax%>')
+        doc.text(54, 123, '<%=data3.IDiamMax%>')
+        doc.text(54, 132, '<%=data3.BDiamMax%>')
+
+        doc.text(62, 100, 'DE mandril real')
+        doc.text(68, 104, '(mm)')
+        doc.text(70, 115, '<%=data2.ODE%>')
+        doc.text(70, 123, '<%=data2.IDE%>')
+        doc.text(70, 132, '<%=data2.BDE%>')
+
+
+        doc.text(90, 100, 'Estatus')
+        doc.text(92, 104, 'OK')
+        doc.addImage(imgData, 'PNG', 92, 112, 5, 5)
+        doc.addImage(imgData, 'PNG', 92, 120, 5, 5)
+        doc.addImage(imgData, 'PNG', 92, 128, 5, 5)
+
+
+
+        doc.text(113, 99, 'Espesor')
+        doc.text(112, 102, 'manguera')
+        doc.text(112, 105, 'vs Plano')
+        doc.text(112, 108, '(min-Max)')
+        doc.line(118, 110, 118, 118)//vertical line
+        doc.line(118, 126, 118, 135)//vertical line
+        doc.text(112, 115, '<%=data3.OEspMin%>')
+        doc.text(112, 132, '<%=data3.BEspMin%>')
+        doc.text(122, 115, '<%=data3.OEspMax%>')
+        doc.text(122, 132, '<%=data3.BEspMax%>')
+
+
+
+        doc.text(136, 100, 'DI tapa')
+        doc.text(136, 104, 'real(mm)')
+        doc.text(140, 115, '<%=data2.ODI%>')
+        doc.text(140, 132, '<%=data2.BDI%>')
+
+        doc.text(155, 99, 'Espesor real=')
+        doc.text(154, 103, '(DI tapa real-DE')
+        doc.text(155, 107, 'mandril real /2)')
+        doc.text(163, 115, '<%=data2.OEsp%>')
+        doc.text(163, 132, '<%=data2.BEsp%>')
+
+        doc.text(183, 100, 'Estatus')
+        doc.text(185, 104, 'OK')
+        doc.addImage(imgData, 'PNG', 185, 112, 5, 5)
+        doc.addImage(imgData, 'PNG', 185, 128, 5, 5)
+
+        //     // Filled square
+        // doc.setDrawColor(0)
+        // doc.setFillColor(255, 255, 255)
+        // doc.rect(107, 118, 93, 7, 'F')
+
+        doc.setFontType('bold')
+        doc.line(15, 140, 200, 140) // horizontal line
+        doc.text(15, 146, 'Sección 2 Laboratorio:')
+        doc.line(15, 150, 200, 150) // horizontal line
+        doc.setFontType('normal')
+
+        doc.rect(15, 152, 185, 32)
+        doc.line(38, 152, 38, 184)//vertical line
+        doc.line(61, 152, 61, 184)//vertical line
+        doc.line(84, 152, 84, 184)//vertical line
+        doc.line(107, 152, 107, 184)//vertical line
+        doc.line(130, 152, 130, 184)//vertical line
+
+        doc.line(50, 167, 50, 184)//vertical line/////
+        doc.line(118, 167, 118, 184)//vertical line/////
+        doc.line(176, 152, 176, 184)//vertical line
+        doc.line(152, 152, 152, 184)//vertical line
+        doc.line(15, 167, 200, 167) // horizontal line
+        doc.line(15, 175, 200, 175) // horizontal line
+
+        doc.text(18, 160, 'Medición de')
+        doc.text(20, 164, 'extremos')
+        doc.text(16, 172, 'Open')
+        doc.text(16, 181, 'Boss')
+
+        doc.text(44, 157, 'DI con')
+        doc.text(40, 161, 'tolerancia de')
+        doc.text(42, 165, 'plano (mm)')
+        doc.text(42, 172, '<%=data3.ODiamMin%>')
+        doc.text(42, 181, '<%=data3.BDiamMin%>')
+        doc.text(54, 172, '<%=data3.ODiamMax%>')
+        doc.text(54, 181, '<%=data3.BDiamMax%>')
+
+        doc.text(64, 161, '*DI real (mm)')
+        doc.text(70, 172, '<%=data2.CODI%>')
+        doc.text(70, 181, '<%=data2.CBDI%>')
+
+        doc.text(90, 157, 'Estatus')
+        doc.text(93, 161, 'OK')
+        doc.addImage(imgData, 'PNG', 93, 169, 5, 5)
+        doc.addImage(imgData, 'PNG', 93, 177, 5, 5)
+
+        doc.text(110, 157, 'Espesor con')
+        doc.text(110, 161, 'tolerancia de')
+        doc.text(110, 165, 'plano (mm)')
+        doc.text(112, 172, '<%=data3.OEspMin%>')
+        doc.text(112, 181, '<%=data3.BEspMin%>')
+        doc.text(122, 172, '<%=data3.OEspMax%>')
+        doc.text(122, 181, '<%=data3.BEspMax%>')
+
+        doc.text(132, 157, 'Espesor real')
+        doc.text(137, 161, '(mm)')
+        doc.text(139, 172, '<%=data2.COEsp%>')
+        doc.text(139, 181, '<%=data2.CBEsp%>')
+
+        doc.text(158, 161, 'Groove')
+        doc.text(162, 172, '<%=data2.COG%>')
+        doc.text(162, 181, '<%=data2.COG%>')
+
+        doc.text(183, 157, 'Estatus')
+        doc.text(185, 161, 'OK')
+        doc.addImage(imgData, 'PNG', 185, 169, 5, 5)
+        doc.addImage(imgData, 'PNG', 185, 177, 5, 5)
+
+        doc.setFontType('bold')
+        doc.line(15, 188, 200, 188) // horizontal line
+        doc.text(15, 194, 'Sección 3 Calidad Ensamble:')
+        doc.line(15, 198, 200, 198) // horizontal line
+        doc.setFontType('normal')
+
+        //doc.text(15, 202, 'Respuestas: Marque ')
+        //doc.addImage(imgData, 'PNG', 45, 199, 5, 5) 
+        //doc.text(80, 202, 'OK')
+        //doc.text(185, 202, 'OK')
+        if ('<%=data2.fix_muescas%>' == "SI") {
+            doc.addImage(imgData, 'PNG', 80, 204, 5, 5)
+        } else {
+            doc.text(80, 208, 'N/A')
+        }
+
+        if ('<%=data2.fix_longitud%>' == "SI") {
+            doc.addImage(imgData, 'PNG', 80, 216, 5, 5)
+        } else {
+            doc.text(80, 220, 'N/A')
+        }
+
+        if ('<%=data2.fix_tapa%>' == "SI") {
+            doc.addImage(imgData, 'PNG', 80, 228, 5, 5)
+        } else {
+            doc.text(80, 232, 'N/A')
+        }
+
+
+
+
+        doc.text(15, 208, 'Muescas de acuerdo a plano')
+        doc.text(15, 214, 'Validación conforme a gage de producto final')
+        doc.text(20, 220, 'Manguera aceptable de longitud')
+        doc.text(15, 226, 'Validación interna')
+        doc.text(20, 232, 'Marca de tapa no excede 1 mm')
+
+        doc.text(120, 208, 'Manguera de acuerdo a plano (goma)')
+        doc.text(120, 214, 'Manguera de acuerdo a plano (tejido)')
+        doc.text(120, 220, 'Manguera aceptable de ruta')
+        doc.text(120, 226, 'Marca ensamblaje acuerdo a gage ensamble')
+        doc.text(120, 232, 'Verificar ensamblaje de manguera')
+
+
+
+
+
+
+
+        if ('<%=data2.fix_goma%>' == "SI") {
+            doc.addImage(imgData, 'PNG', 185, 204, 5, 5)
+        } else {
+            doc.text(185, 208, 'N/A')
+        }
+
+        if ('<%=data2.fix_goma%>' == "SI") {
+            doc.addImage(imgData, 'PNG', 185, 210, 5, 5)
+        } else {
+            doc.text(185, 214, 'N/A')
+        }
+
+        if ('<%=data2.fix_ruta%>' == "SI") {
+            doc.addImage(imgData, 'PNG', 185, 216, 5, 5)
+        } else {
+            doc.text(185, 220, 'N/A')
+        }
+
+        if ('<%=data2.fix_ensamblaje%>' == "SI") {
+            doc.addImage(imgData, 'PNG', 185, 222, 5, 5)
+        } else {
+            doc.text(185, 226, 'N/A')
+        }
+
+        if ('<%=data2.fix_verificar%>' == "SI") {
+            doc.addImage(imgData, 'PNG', 185, 228, 5, 5)
+        } else {
+            doc.text(185, 232, 'N/A')
+        }
+
+
+
+        doc.text(15, 240, 'Comentarios:')
+        doc.line(35, 240, 200, 240) // horizontal line
+
+        doc.line(15, 250, 48, 250) // horizontal line
+        doc.text(20, 255, 'Herramentales')
+
+        doc.line(53, 250, 86, 250) // horizontal line
+        doc.text(62, 255, 'Procesos')
+
+        doc.line(91, 250, 124, 250) // horizontal line
+        doc.text(100, 255, 'Laboratorio')
+
+        doc.line(129, 250, 162, 250) // horizontal line
+        doc.text(134, 255, 'Calidad Ensamble')
+
+        doc.text(178, 249, '<%=fechaLiberacionFormatted%>')
+        doc.line(167, 250, 200, 250) // horizontal line
+        doc.text(171, 255, 'Fecha de liberación')
+        doc.text(178, 260, '(MM/DD/AA)')
+
+
+
+        doc.text(15, 265, 'Nota: Para liberacion de mandriles prototipo, solo aplica la firma de Herramentales y Laboratorio.')
+        doc.text(15, 268, 'Nomenclatura: DI=Diámetro interno, DE=Diámetro externo.')
+
+        doc.text(100, 274, 'Pagina 1 de 1')
+        doc.text(175, 15, 'QD-C2-P19-00-F01')
+        doc.text(150, 274, 'Fecha de revision (MM/DD/AA): 12/09/19')
+
+
+        // doc.text('CheckBox:', 10, 125);
+        // var checkBox = new CheckBox();
+        // checkBox.fieldName = "CheckBox1";
+        // checkBox.Rect = [50, 120, 30, 10];
+        // doc.addField(checkBox);
+
+
+
+
+
+
+
+
+
+        //doc.save(`Lista_Empleados__.pdf`)
+        window.open(doc.output('bloburl'))
+    }
+
+</script>

@@ -1,0 +1,102 @@
+<% include ./static/header %>
+<% include ./static/sidebar %>
+<% include ./static/navbar %>
+
+<div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+
+<div class="col-md-10 col-lg-10-2 col-xl-11">
+    <div class="row">
+        <div class="box-header col-lg-4">
+            <br>
+            <h3 class="box-title">Historial del Mandril: #<%= data[0].hist_mandril %>-<%= data[0].hist_consec %> </h3>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="container">
+    <div class="col-lg-12">
+
+    </div>
+
+</div>
+<div class="table-responsive">
+<div class="containerTable">
+<!-- /.box-header -->
+<div class="table table-responsive" id="table">
+    <table id="myTable" class="table table-bordered table-striped table-sm">
+        <thead class="thead-dark">
+
+            <th><span class="icoSidebar fas fa-user"></span> Revsiar</th>
+            <th><span class="icoSidebar fas fa-user"></span> Empleado</th>
+            <th><span class="icoSidebar fas fa-warehouse"></span> Area</th>
+            <th><span class="icoSidebar fas fa-check"></span> Status</th>
+            <th><span class="icoSidebar fas fa-tasks"></span> Actividad</th>
+            <!-- <th><span class="icoSidebar fas fa-pen"></span> Comentario</th> -->
+            <th><span class="icoSidebar fas fa-calendar"></span> Fecha</th>
+
+        </thead>
+
+        <tbody>
+            <%if(data) { %>
+            <% for (var i = 0; i < data.length; i++) { %>
+                <%
+                let date = data[i].hist_fecha
+                date.setHours(date.getHours()-7);
+                var myDate_string = date.toISOString();
+                var myDate_string = myDate_string.replace("T","  Hora: ");
+                var myDate_string = myDate_string.substring(0, myDate_string.length - 5);
+                %>
+
+                <%
+                            if(data[i].hist_status== "Actividad Liberada"){
+                               classBtn = "success"
+                            }else{
+                                classBtn="danger"
+                            }
+                            %>
+
+                
+
+            <tr class="table_roww">
+
+                <td class="text-center " width='5%'> 
+                    <form method="POST">
+                    <button type="submit" formaction="/historial_info" class="btn btn-<%=classBtn%>" data-toggle="tooltip" data-placement="right" title="Revisar"><span
+                    class="icoWhite fas fa-search"></span></button>
+                    <input type="text" name="idHistorial" value="<%=data[i].hist_id%>" hidden>
+                </form>
+                </td>
+                <td><%= data[i].hist_empleado%></td>
+                <td><%= data[i].area_desc%></td>
+                <td><%= data[i].hist_status%></td>
+                <td><%= data[i].activ_descripcion%></td>
+                <!-- <td><%= data[i].hist_comentario %></td> -->
+                <td><%= myDate_string %></td>
+
+
+            </tr>
+            <% } %>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+<% include ./static/footer %>
+
+<script>
+
+    window.onload = function () {
+        $(".spinner-border").fadeOut("fast");
+        $('.main').show('slow');
+    }
+</script>
+
+</div>
+</body>
+
+</html>

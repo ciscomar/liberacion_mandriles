@@ -1,0 +1,74 @@
+<% include ./static/header %>
+<% include ./static/sidebar %>
+<% include ./static/navbar %>
+
+<div class="col-md-6 col-lg-10-2">
+    <!-- general form elements -->
+    <div class="box box-primary col-lg-12">
+        <div class="box-header with-border">
+            <br>
+            <h3 class="box-title">Historial</h3>
+        </div>
+       <br>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <div class="box-body">
+
+                <!------->
+                <%
+                let date = data.hist_fecha
+                date.setHours(date.getHours()-7);
+                var myDate_string = date.toISOString();
+                var myDate_string = myDate_string.replace("T","  Hora: ");
+                var myDate_string = myDate_string.substring(0, myDate_string.length - 5);
+                %>
+                <div class="row">
+
+                    
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">ID Mandril:</label>
+                        <input type="text" class="form-control" id="id" value="<%= data.hist_mandril%>-<%= data.hist_consec%>"
+                            name="id" readonly>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Empleado:</label>
+                        <input type="text" class="form-control" id="empleado" value="<%= data.hist_empleado%>" name="empleado" readonly>
+                    </div>
+
+                    <div class="form-group col-lg-12">
+                        <label for="Titulo">Actividad:</label>
+                        <input type="text" class="form-control" id="empleado" value="<%= data.activ_descripcion%>" name="empleado" readonly>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Status:</label>
+                        <input type="text" class="form-control" id="empleado" value="<%= data.hist_status%>" name="empleado" readonly>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Fecha:</label>
+                        <input type="text" class="form-control" id="empleado" value="<%= myDate_string %>" name="empleado" readonly>
+                    </div>
+                </div>
+
+
+      
+                <div class="form-group">
+                    <label for="Descripcion">Comentario:</label>
+                    <textarea type="text" class="form-control " rows="6" name="comentario" value="" readonly><%= data.hist_comentario%></textarea>
+                </div>
+
+         
+
+        </form>
+
+
+        
+    </div>
+    <!-- /.box -->
+
+    <% include ./static/footer %>
+</div>
+</body>
+
+</html>
+

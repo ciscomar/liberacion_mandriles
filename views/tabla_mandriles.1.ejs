@@ -1,0 +1,138 @@
+<% include ./static/header %>
+<% include ./static/sidebar %>
+<% include ./static/navbar %>
+
+
+<div class="col-md-10 col-lg-10-2 col-xl-11">
+    <div class="row">
+        <div class="box-header col-lg-4">
+            <h3 class="box-title">Status Mandriles</h3>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="container">
+    <div class="col-lg-12">
+
+    </div>
+
+</div>
+<div class="table-responsive">
+<div class="containerTable">
+<!-- /.box-header -->
+<div class="table table-responsive" id="table">
+    <table id="myTable" class="table table-bordered table-striped">
+        <thead class="thead-dark">
+
+            <th><span class="icoSidebar fas fa-history"></span> Historial</th>
+            <th><span class="icoSidebar fas fa-check"></span> Liberar</th>
+            <th><span class="icoSidebar fas fa-hashtag"></span>ID Mandril</th>
+            <th><span class="icoSidebar fas fa-wrench"></span>Plano</th>
+            <th><span class="icoSidebar fas fa-car"></span>Numero de Parte</th>
+            <th><span class="icoSidebar fas fa-info-circle"></span> Plataforma</th>
+            <th><span class="icoSidebar fas fa-map-marker"></span> Familia</th>
+            <th><span class="icoSidebar fas fa-calendar"></span> Longitud Green</th>
+            <th><span class="icoSidebar fas fa-calendar-minus"></span> Longitud Vulcanizado</th>
+            <th><span class="icoSidebar fas fa-calendar-plus"></span> Ultima liberacion</th>
+            <th><span class="icoSidebar fas fa-stopwatch"></span> Actividad</th>
+
+        </thead>
+
+        <tbody>
+            <%if(data) { %>
+            <% for (var i = 0; i < data.length; i++) { %>
+                <%
+                let date = data[i].mandril_ufecha
+                let formatted_date =  date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() 
+
+                %>
+
+            <tr class="table_roww">
+                <td class="text-center " width='10%'>
+                    <form method="POST">
+                        <button name="equipoid" type="submit" formaction="/historial"
+                            class="btn btn-info text-center">Historial</button>
+                        <input type="text" name="equipo_id2" value="<%=data[i].equipo_id%>" hidden>
+                    </form>
+                </td>
+                <td class="text-center " width='10%'>
+                    <form method="POST">
+                        <button name="equipoid" type="submit" formaction="/historial"
+                            class="btn btn-success text-center">Liberar</button>
+                        <input type="text" name="equipo_id2" value="<%=data[i].equipo_id%>" hidden>
+                    </form>
+                </td>
+                <td class="table_id"><%= data[i].mandril_id %></td>
+                <td> 
+                        <form method="POST">
+                        <button type="submit" formaction="/plano" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Espera"><span
+                        class="icoWhite fas fa-wrench"></span></button>
+                        <input type="text" name="idmandrilp" value="<%=data[i].mandril_id%>" hidden>
+                    </form>
+                    </td>
+                <td><%= data[i].mandril_numparte%></td>
+                <td><%= data[i].mandril_plat%></td>
+                <td><%= data[i].mandril_fam %></td>
+                <td><%= data[i].mandril_lgreen %></td>
+                <td><%= data[i].mandril_lvulca %></td>
+                <td><%= formatted_date %></td>
+                <td>
+                        <table  class=" table-borderless table-sm">
+                                <thead>
+                                    <tr>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                                <th>6</th>
+                                <th>7</th>
+                            </tr>
+                            
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                <td><input type="checkbox" ></td>
+                                <td><input type="checkbox" ></td>
+                                <td><input type="checkbox" ></td>
+                                <td><input type="checkbox" ></td>
+                                <td><input type="checkbox" ></td>
+                                <td><input type="checkbox" ></td>
+                                <td><input type="checkbox" ></td>
+                            </tr>
+                            <tr>
+                                    <th>8</th>
+                                    <th>9</th>
+                                    <th>10</th>
+                                    <th>11</th>
+                                    <th>12</th>
+                                    <th>13</th>
+                                    <th>14</th>
+                                </tr>
+                    <td><input type="checkbox" ></td>
+                                <td><input type="checkbox" ></td>
+                                <td><input type="checkbox" ></td>
+                                <td><input type="checkbox" ></td>
+                                <td><input type="checkbox" ></td>
+                                <td><input type="checkbox" ></td>
+                                <td><input type="checkbox" ></td>
+                            </tbody>
+
+                        </table>
+                </td>
+
+            </tr>
+            <% } %>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+<% include ./static/footer %>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,438 @@
+<% include ./static/header %>
+<% include ./static/sidebar %>
+<% include ./static/navbar %>
+
+<div class="col-md-6 col-lg-10-2">
+    <!-- general form elements -->
+    <div class="box box-primary col-lg-12">
+        <div class="box-header with-border">
+            <br>
+            <h3 class="box-title"><%= data.descripcion%></h3>
+        </div>
+       <br>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <div class="box-body">
+
+                <!------->
+                
+
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Empleado:</label>
+                        <input type="text" class="form-control" id="user" value="<%= user%>" name="user" readonly>
+                    </div>
+
+
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">ID Mandril:</label>
+                        <input type="text" class="form-control" id="id" value="<%= data.id%>-<%= data.consecutivo%>"
+                            name="id" readonly>
+                    </div>
+                </div>
+
+
+                <% if(accion == 'rechazar'){%>
+                    <div class="row">
+                    <div class="form-group col-lg-6" id='divplat'>
+                        <label for="Titulo">Rechazar</label>
+                        <select class="form-control" name="regresar" id="regresar" required>
+                            <option value="" selected>Seleccionar</option>
+                            <option value="anterior">Actividad Anterior</option>
+                            <option value="inicio">Regresar a Tooling</option>
+                        </select>
+                    </div>
+                </div>
+                    <% }%>
+
+
+                <% if(data.actividad == 9 && accion == 'liberar'){%>
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Longitud Green:</label>
+                        <input type="text" class="form-control" id="lgreen" value="" name="lgreen" required>
+                    </div>
+
+                </div>
+                <% }%>
+
+                <% if((data.actividad == 7 || data.actividad == 4 ) && accion == 'liberar'){%>
+                    <div class="row">
+                <div class="form-group col-lg-6" id='divplat'>
+                    <label for="Titulo">Consecutivos:</label>
+                    <select class="form-control" name="selectConsecutivo" id="selectConsecutivo" required>
+                        <option value="" selected>Seleccionar</option>
+                        <% for (var i = 0; i < data2.length; i++) { %>
+                        <option><%= data2[i].mandril_consec %></option>
+                        <% } %>
+
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label for="Titulo">Consecutivos Seleccionados:</label>
+                    <input type="text" class="form-control" id="consecutivosI" value="" name="consecutivosI" readonly>
+                </div>
+
+                
+            </div>
+                <% }%>
+
+
+
+
+                <% if(data.actividad == 5 && accion == 'liberar'){%>
+                    <div class="row">
+  
+                        <div class="form-group col-lg-6">
+                            <label for="Titulo">Longitud Vulcanizado:</label>
+                            <input type="text" class="form-control" id="lvulca" value="" name="lvulca" required>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="Titulo">Intermedio pt. DE mandril real (mm):</label>
+                            <input type="text" class="form-control" id="IDE" value="" name="IDE" required>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="Titulo">Open pt. DE mandril real (mm):</label>
+                            <input type="text" class="form-control" id="ODE" value="" name="ODE" required>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label for="Titulo">Boss pt. DE mandril real (mm):</label>
+                            <input type="text" class="form-control" id="BDE" value="" name="BDE" required>
+                        </div>
+   
+                        <div class="form-group col-lg-6">
+                            <label for="Titulo">Open pt. DI tapa real (mm):</label>
+                            <input type="text" class="form-control" id="ODI" value="" name="ODI" required>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="Titulo">Boss pt. DI tapa real (mm):</label>
+                            <input type="text" class="form-control" id="BDI" value="" name="BDI" required>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label for="Titulo">Open pt. Espesor real:</label>
+                            <input type="text" class="form-control" id="OEsp" value="" name="OEsp" required>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="Titulo">Boss pt. Espesor real:</label>
+                            <input type="text" class="form-control" id="BEsp" value="" name="BEsp" required>
+                        </div>
+
+                 
+                        <div class="form-group col-lg-6">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="checkP1">
+                            <label class="form-check-label" for="checkP1">Cumplimiento a reglas de diseño</label>
+                        </div>
+          
+                    </div>
+                    <div class="form-group col-lg-6">
+   
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="checkP2">
+                            <label class="form-check-label" for="checkP2">Mandril sin rebaba soldadura y filo</label>
+                        </div>
+                    </div>
+                   
+                        
+
+                    </div>
+                    </div>
+                    <% }%>
+
+                <% if(data.actividad == 6 && accion == 'liberar'){%>
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Open DI real (mm):</label>
+                        <input type="text" class="form-control" id="CODI" value="" name="CODI" required>
+                    </div>
+
+
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Boss DI real (mm):</label>
+                        <input type="text" class="form-control" id="CBDI" value="" name="CBDI" required>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Open Espesor real (mm):</label>
+                        <input type="text" class="form-control" id="COEsp" value="" name="COEsp" required>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Boss Espesor real (mm):</label>
+                        <input type="text" class="form-control" id="CBEsp" value="" name="CBEsp" required>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Open Groove:</label>
+                        <input type="text" class="form-control" id="COG" value="" name="COG" required>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Boss Groove:</label>
+                        <input type="text" class="form-control" id="CBG" value="" name="CBG" required>
+                    </div>
+                </div>
+                <% }%>
+
+
+                <% if(data.actividad == 3 && accion == 'liberar'){%>
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label for="Titulo">Familia:</label>
+                            <input type="text" class="form-control" id="familia" value="" name="familia" required>
+                        </div>
+    
+                    </div>
+                    <% }%>
+
+                    <% if(data.actividad == 8 && accion == 'liberar'){%>
+                        <div class="row">
+                            
+                            <div class="form-group col-lg-6" id='divplat'>
+                                <label for="Titulo">Muescas de acuerdo a plano</label>
+                                <select class="form-control" name="fix_muescas" id="fix_muescas" required>
+                                    <option value="" selected>Seleccionar</option>
+                                    <option>SI</option>
+                                    <option>N/A</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-6" id='divplat'>
+                                <label for="Titulo">Manguera de acuerdo a plano (tejido)</label>
+                                <select class="form-control" name="fix_tejido" id="fix_tejido" required>
+                                    <option value="" selected>Seleccionar</option>
+                                    <option>SI</option>
+                                    <option>N/A</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-6" id='divplat'>
+                                <label for="Titulo">Manguera aceptable de longitud</label>
+                                <select class="form-control" name="fix_longitud" id="fix_longitud" required>
+                                    <option value="" selected>Seleccionar</option>
+                                    <option>SI</option>
+                                    <option>N/A</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-6" id='divplat'>
+                                <label for="Titulo">Manguera aceptable de ruta</label>
+                                <select class="form-control" name="fix_ruta" id="fix_ruta" required>
+                                    <option value="" selected>Seleccionar</option>
+                                    <option>SI</option>
+                                    <option>N/A</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-6" id='divplat'>
+                                <label for="Titulo">Marca de tapa no excede 1 mm</label>
+                                <select class="form-control" name="fix_tapa" id="fix_tapa" required>
+                                    <option value="" selected>Seleccionar</option>
+                                    <option>SI</option>
+                                    <option>N/A</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-6" id='divplat'>
+                                <label for="Titulo">Marca ensamblaje acuerdo a gage de ensamble</label>
+                                <select class="form-control" name="fix_ensamblaje" id="fix_ensamblaje" required>
+                                    <option value="" selected>Seleccionar</option>
+                                    <option>SI</option>
+                                    <option>N/A</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-6" id='divplat'>
+                                <label for="Titulo">Manguera de acuerdo a plano (goma)</label>
+                                <select class="form-control" name="fix_goma" id="fix_goma" required>
+                                    <option value="" selected>Seleccionar</option>
+                                    <option>SI</option>
+                                    <option>N/A</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-6" id='divplat'>
+                                <label for="Titulo">Verificar ensamblaje de manguera</label>
+                                <select class="form-control" name="fix_verificar" id="fix_verificar" required>
+                                    <option value="" selected>Seleccionar</option>
+                                    <option>SI</option>
+                                    <option>N/A</option>
+                                </select>
+                            </div>
+
+                            <!-- <div class="form-group col-lg-6">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check1">
+                                    <label class="form-check-label" for="check1">Muescas de acuerdo a plano</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check2">
+                                    <label class="form-check-label" for="check2">Manguera aceptable de longitud</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check3">
+                                    <label class="form-check-label" for="check3">Marca de tapa no excede 1 mm</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check4">
+                                    <label class="form-check-label" for="check4">Manguera de acuerdo a plano (goma)</label>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-lg-6">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check5">
+                                    <label class="form-check-label" for="check5">Manguera de acuerdo a plano (tejido)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check6">
+                                    <label class="form-check-label" for="check6">Manguera aceptable de ruta</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check7">
+                                    <label class="form-check-label" for="check7">Marca ensamblaje acuerdo a gage de ensamble</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="check8">
+                                    <label class="form-check-label" for="check8">Verificar ensamblaje de manguera</label>
+                                </div>
+                            </div> -->
+        
+                        </div>
+                        <% }%>
+
+                    <!-- <% if(data.actividad == 9 && accion == 'liberar'){%>
+                    <div class="form-group">
+                            <label for="titulo">Seleccionar Formato PDF </label>
+                            <input type="file" name="fileUploader" id="fileUploader" accept="application/pdf" required>
+                          </div>
+                   <% }%> -->
+                <div class="form-group">
+                    <label for="Descripcion">Comentario:</label>
+                    <textarea type="text" class="form-control " rows="6" name="comentario" required></textarea>
+                </div>
+
+         
+                <input type="text" class="form-control" id="actividad" value="<%= data.actividad%>" name="actividad"
+                    hidden>
+                    <input type="text" class="form-control" id="numeroplano" value="<%= data.numeroplano%>" name="numeroplano"
+                    hidden>
+
+                <button formAction="/guardar_liberar" type="submit" class="btn btn-success btn-block" id="liberar"
+                    <% if(accion == 'rechazar') {%> hidden <% } %>>
+                    Liberar</button>
+                <button formAction="/guardar_rechazar" type="submit" class="btn btn-danger btn-block" id="rechazar"
+                    <% if(accion == 'liberar') {%> hidden <% } %>>
+                    Rechazar</button>
+        </form>
+
+
+        
+    </div>
+    <!-- /.box -->
+
+    <% include ./static/footer %>
+</div>
+</body>
+
+</html>
+
+<script type="text/javascript" src="/js/imagenes.js"></script>
+
+<script>
+
+
+actividad = <%- JSON.stringify(data.actividad) %>;
+
+$(document).ready(function () {
+
+    if( actividad==5){
+        $('#liberar').prop("disabled", true);
+    }
+
+
+})
+
+$(".form-check-input").change(function(){
+
+    if ($('.form-check-input:checked').length == $('.form-check-input').length) {
+        $('#liberar').prop("disabled", false);
+    }else{
+        $('#liberar').prop("disabled", true);
+    } 
+});
+
+
+
+$( "#ODI" ).keyup(function() {
+  
+    if($('#ODE').val() != ""){
+
+    let openDE =  parseFloat($('#ODE').val());
+    let openDI =  parseFloat($('#ODI').val());
+    total= ((openDE-openDI)/2).toFixed(2)
+    $('#OEsp').val(total);
+    }else{
+
+        $('#OEsp').val("");
+    }
+
+});
+
+$( "#ODE" ).keyup(function() {
+  
+    if($('#ODI').val() != ""){
+
+  let openDE =  parseFloat($('#ODE').val());
+  let openDI =  parseFloat($('#ODI').val());
+  total=((openDE-openDI)/2).toFixed(2)
+  $('#OEsp').val(total);
+    }else{
+
+        $('#OEsp').val("");
+}
+
+});
+
+
+
+$( "#BDE" ).keyup(function() {
+  
+
+    if($('#BDI').val() != ""){
+  let BDE =  parseFloat($('#BDE').val());
+  let BDI =  parseFloat($('#BDI').val());
+  let total= ((BDE-BDI)/2).toFixed(2)
+  $('#BEsp').val(total);
+    }else{
+        
+        $('#BEsp').val("");
+
+    }
+
+});
+
+$( "#BDI" ).keyup(function() {
+  
+
+    if($('#BDE').val() != ""){
+  let BDE =  parseFloat($('#BDE').val());
+  let BDI =  parseFloat($('#BDI').val());
+  let total= ((BDE-BDI)/2).toFixed(2)
+  $('#BEsp').val(total);
+    }else{
+        
+        $('#BEsp').val("");
+
+    }
+
+});
+
+var consecutivos=[]
+$("#selectConsecutivo").change(function(){
+
+//consecutivos.push($("#selectConsecutivo").val())
+
+consecutivos.indexOf($("#selectConsecutivo").val()) === -1 ? consecutivos.push($("#selectConsecutivo").val()) : console.log("")
+
+$("#consecutivosI").val(consecutivos)
+
+
+});
+
+
+</script>

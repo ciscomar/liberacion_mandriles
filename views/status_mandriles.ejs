@@ -1,0 +1,182 @@
+<% include ./static/header %>
+<% include ./static/sidebar %>
+<% include ./static/navbar %>
+
+<div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+
+<div class="col-md-10 col-lg-10-2 col-xl-11">
+    <div class="row">
+        <div class="box-header col-lg-4">
+            <br>
+            <h3 class="box-title">Mandriles en <%=areastring%></h3>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="container">
+    <div class="col-lg-12">
+
+    </div>
+
+</div>
+<div class="table-responsive">
+    <div class="containerTable">
+        <!-- /.box-header -->
+        <div class="table table-responsive" id="table">
+            <table id="myTable" class="table table-bordered table-striped table-sm">
+                <thead class="thead-dark">
+
+                    <th><span class="icoSidebar fas fa-history"></span> Historial</th>
+                    <th><span class="icoSidebar fas fa-check"></span> Acciones</th>
+                    <th><span class="icoSidebar fas fa-hashtag"></span> ID Mandril</th>
+                    <th><span class="icoSidebar fas fa-hashtag"></span> Reporte</th>
+                    <th><span class="icoSidebar fas fa-hashtag"></span> Plano </th>
+                    <th><span class="icoSidebar fas fa-calendar-check"></span> Estado</th>
+                    <th><span class="icoSidebar fas fa-car"></span> Numero de Parte</th>
+                    <th><span class="icoSidebar fas fa-car"></span> Plataforma</th>
+                    <th><span class="icoSidebar fas fa-car"></span> Tipo</th>
+                    <th><span class="icoSidebar fas fa-ruler"></span> Motivo</th>
+                    <!-- <th><span class="icoSidebar fas fa-ruler"></span> Longitud Vulcanizado</th>
+                    <th><span class="icoSidebar fas fa-ruler"></span> Espesor</th>
+                    <th><span class="icoSidebar fas fa-ruler"></span> Diametro</th>
+                    <th><span class="icoSidebar fas fa-ruler"></span> Groove</th> -->
+                    <th><span class="icoSidebar fas fa-calendar"></span> Ultima liberacion</th>
+                    <th><span class="icoSidebar fas fa-tasks"></span> Actividad</th>
+                    <th><span class="icoSidebar fas fa-arrow-up"></span> Prioridad</th>
+
+                </thead>
+
+                <tbody>
+                    <%if(data) { %>
+                    <% for (var i = 0; i < data.length; i++) { %>
+                    <%
+                let date = data[i].mandril_ufecha
+                let formatted_date =  date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() 
+
+                %>
+
+                    <%
+                            if(data[i].mandril_estado == "Rechazado"){
+                               classBtn = "danger"
+                            }else {
+                                classBtn ="info"
+                            }
+                            %>
+
+                            <%
+                            if(data[i].mandril_estado == "Liberado"){
+                               classBtn2 = "success"
+                            }else if(data[i].mandril_estado== "Proceso"){
+                                classBtn2 ="info"
+                            }else{
+                                classBtn2="danger"
+                            }
+                            %>
+
+                    <tr class="table_roww">
+                        <td class="text-center " width='5%'>
+                            <form method="POST">
+                                <button name="equipoid" type="submit" formaction="/historial_mandril"
+                                    class="btn btn-<%=classBtn%> text-center" data-toggle="tooltip" data-placement="left" title="Historial"><span class="icoWhite fas fa-history"></span></button>
+                                <input type="text" name="idmandril" value="<%=data[i].mandril_id%>-<%=data[i].mandril_consec%>" hidden>
+                            </form>
+                        </td>
+                        <td class="text-center " width='10%'>
+                            <form method="POST">
+
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="submit" formaction="/liberar/liberar" class="btn btn-success"><span
+                                            class="icoWhite fas fa-check" data-toggle="tooltip" data-placement="left" title="Liberar"></span></button>
+                                            <%if(data[i].mandril_status>2){%>
+                                    <button type="submit" formaction="/liberar/rechazar" class="btn btn-danger" data-toggle="tooltip" data-placement="right" title="Rechazar"><span
+                                            class="icoWhite fas fa-times"></span></button>
+                                            <%}%>
+                                            <%if(areastring=="Tooling"){%>
+                                            <button type="submit" formaction="/guardar_espera" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Espera"><span
+                                                class="icoWhite fas fa-pause-circle"></span></button>
+                                            <%}%>
+
+                                </div>
+
+                                <input type="text" name="idmandrill" value="<%=data[i].mandril_id%>" hidden>
+                                <input type="text" name="consecutivo" value="<%=data[i].mandril_consec%>" hidden>
+                                <input type="text" name="actividad" value="<%=data[i].mandril_status%>" hidden>
+                                <input type="text" name="descripcion" value="<%=data[i].activ_descripcion%>" hidden>
+                                <input type="text" name="numeroplano" value="<%=data[i].mandril_plano%>" hidden>
+                          
+                                
+                            </form>
+                        </td>
+                        <td class="table_id" width='10%'><%= data[i].mandril_id %>-<%= data[i].mandril_consec %></td>
+                        <td class="text-center " width='5%'> 
+                            <form method="POST">
+                            <button type="submit" formaction="/mandril_info" class="btn btn-<%=classBtn%>" data-toggle="tooltip" data-placement="right" title="Reporte"><span
+                            class="icoWhite fas fa-tasks"></span></button>
+                            <input type="text" name="idmandrilInfo" value="<%=data[i].mandril_id%>-<%=data[i].mandril_consec%>" hidden>
+                            <input type="text" name="mandrilStatus" value="<%=data[i].mandril_status%>" hidden>
+                            <input type="text" name="classColor" value="<%=classBtn2%>" hidden>
+                            
+                        </form>
+                        </td>
+                        <td class="text-center " width='5%'> 
+                            <form method="POST">
+                            <button type="submit" formaction="/plano" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Plano"><span
+                            class="icoWhite fas fa-wrench"></span></button>
+                            <input type="text" name="idmandrilp" value="<%=data[i].mandril_id%>-<%=data[i].mandril_consec%>" hidden>
+                            <input type="text" name="idmandrilplano" value="P<%=data[i].mandril_id%>-<%=data[i].mandril_plano%>" hidden>
+                            <input type="text" name="areaplano" value="<%=areastring%>" hidden>
+                            <input type="text" name="tipo" value="plano" hidden>
+
+                                <!--08/04/2020-->
+                                <input type="text" name="idmandrill" value="<%=data[i].mandril_id%>" hidden>
+                                <input type="text" name="consecutivo" value="<%=data[i].mandril_consec%>" hidden>
+                                <input type="text" name="actividad" value="<%=data[i].mandril_status%>" hidden>
+                                <input type="text" name="descripcion" value="<%=data[i].activ_descripcion%>" hidden>
+                                <input type="text" name="numeroplano" value="<%=data[i].mandril_plano%>" hidden>
+                                <!--08/04/2020-->
+
+                        </form>
+                        </td>
+                       
+  
+                        <td><%= data[i].mandril_estado%></td>
+                        <td><%= data[i].mandril_numparte%></td>
+                        <td><%= data[i].mandril_plat%></td>
+                        <td><%= data[i].mandril_tipo %></td>
+                        <td><%= data[i].mandril_motivo %></td>
+                        <!-- <td><%= data[i].mandril_lvulca %></td>
+                        <td><%= data[i].mandril_espesor %></td>
+                        <td><%= data[i].mandril_diametro %></td>
+                        <td><%= data[i].mandril_groove%></td> -->
+                        <td><%= formatted_date %></td>
+                        <td><%= (data[i].activ_descripcion).substring(0,8)+"..." %></td>
+                        <td><%= data[i].mandril_prioridad %></td>
+
+
+                    </tr>
+                    <% } %>
+                    <% } %>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<% include ./static/footer %>
+
+<script>
+
+    window.onload = function () {
+        $(".spinner-border").fadeOut("fast");
+        $('.main').show('slow');
+    }
+</script>
+
+</div>
+</body>
+
+</html>

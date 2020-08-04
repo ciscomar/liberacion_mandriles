@@ -1,0 +1,149 @@
+<div class="row" id="tarjetas">
+    <%
+        let total = data2.mandrilProceso + data2.mandrilLiberado + data2.mandrilRechazado
+        let porcentajeProceso =    Math.round(data2.mandrilProceso  * 100 / total) *100/100
+        let porcentajeLiberado =   Math.round(data2.mandrilLiberado * 100 / total) *100/100
+        let porcentajeRechazado=    Math.round(data2.mandrilRechazado  * 100 / total) *100/100
+        %>
+
+    <!-- andon Atendidas -->
+    <div class="animated fadeInLeft fast col-xl-3 col-md-6 mb-4">
+        <div class="Card border-left-atendidas shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Proceso:
+                            <%=data2.mandrilProceso%></div>
+
+                        <div class="progress">
+                            <div class="animated fadeInLeft fast progress-bar progress-bar-striped bg-info"
+                                role="progressbar" style="width: <%=porcentajeProceso%>%"
+                                aria-valuenow="<%=porcentajeProceso%>" aria-valuemin="0" aria-valuemax="<%=total%>">
+                                <%=porcentajeProceso%>%</div>
+                        </div>
+
+                        <div class="row no-gutters align-items-center">
+
+
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- andon Abiertas -->
+    <div class="animated fadeInLeft fast cdelay-1 col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-abiertas shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Rechazado:
+                            <%=data2.mandrilRechazado%>
+                        </div>
+
+                        <div class="progress">
+                            <div class="animated fadeInLeft fast cdelay-1 progress-bar progress-bar-striped bg-danger"
+                                role="progressbar" style="width: <%=porcentajeRechazado%>%"
+                                aria-valuenow="<%=porcentajeRechazado%>" aria-valuemin="0" aria-valuemax="<%=total%>">
+                                <%=porcentajeRechazado%>%</div>
+                        </div>
+
+                    </div>
+                    <div class="col-auto">
+                        <i class="far fa-clipboard fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- andon Cerradas -->
+    <div class="animated fadeInLeft fast cdelay-2 col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-cerradas shadow h-70 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Liberado:
+                            <%=data2.mandrilLiberado%>
+                        </div>
+
+                        <div class="progress">
+                            <div class="animated fadeInLeft fast cdelay-2 progress-bar progress-bar-striped bg-success"
+                                role="progressbar" style="width: <%=porcentajeLiberado%>%"
+                                aria-valuenow="<%=porcentajeLiberado%>" aria-valuemin="0" aria-valuemax="<%=total%>">
+                                <%=porcentajeLiberado%>%</div>
+                        </div>
+
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-clipboard-check fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="animated fadeInLeft fast cdelay-3 col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-excel shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Decargar tabla <span
+                                class="fas fa-chevron-right"></span>
+                        </div>
+
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-success" onclick="exportTableToExcel('myTable')"><span
+                                class="fas fa-file-excel 2x"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid mt-4 mb-4">
+
+    <%
+    let total2 = data3.mandrilLanzamientos + data3.mandrilTooling + data3.mandrilProcesos + data3.mandrilCalidad
+    let porcentajeLanzamientos =    Math.round(data3.mandrilLanzamientos  * 100 / total2) *100/100
+    let porcentajeTooling =   Math.round(data3.mandrilTooling * 100 / total2) *100/100
+    let porcentajeProcesos =    Math.round(data3.mandrilProcesos  * 100 / total2) *100/100
+    let porcentajeCalidad =    Math.round(data3.mandrilCalidad * 100 / total2) *100/100
+
+
+    %>
+    <h5 class="text-center">Mandriles por Area</h>
+        <h6>Lanzamientos</h6>
+        <div class="progress">
+
+            <div class="animated fadeInLeft fast progress-bar progress-bar-striped bg-info bg-info"
+                role="progressbar" style="width: <%=porcentajeLanzamientos%>%" aria-valuenow="<%=porcentajeLanzamientos%>"
+                aria-valuemin="0" aria-valuemax="<%=total2%>"><%=porcentajeLanzamientos%>%</div>
+        </div>
+        <h6>Tooling</h6>
+        <div class="progress">
+            <div class="animated fadeInLeft fast cdelay-1 progress-bar progress-bar-striped bg-secondary"
+                role="progressbar" style="width: <%=porcentajeTooling%>%" aria-valuenow="<%=porcentajeTooling%>"
+                aria-valuemin="0" aria-valuemax="<%=total2%>"><%=porcentajeTooling%>%</div>
+        </div>
+        <h6>Procesos</h6>
+        <div class="progress">
+            <div class="animated fadeInLeft fast cdelay-2 progress-bar progress-bar-striped bg-info"
+                role="progressbar" style="width: <%=porcentajeProcesos%>%" aria-valuenow="<%=porcentajeProcesos%>"
+                aria-valuemin="0" aria-valuemax="<%=total2%>"><%=porcentajeProcesos%>%</div>
+        </div>
+        <h6>Calidad</h6>
+        <div class="progress">
+            <div class="animated fadeInLeft fast cdelay-2 progress-bar progress-bar-striped bg-secondary"
+                role="progressbar" style="width: <%=porcentajeCalidad%>%" aria-valuenow="<%=porcentajeCalidad%>"
+                aria-valuemin="0" aria-valuemax="<%=total2%>"><%=porcentajeCalidad%>%</div>
+        </div>
+
+</div>

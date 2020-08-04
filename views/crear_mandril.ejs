@@ -1,0 +1,478 @@
+<% include ./static/header %>
+<% include ./static/sidebar %>
+<% include ./static/navbar %>
+
+<div class="col-md-12 col-lg-10-2">
+    <!-- general form elements -->
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <br>
+            <h3 class="box-title">Nuevo Mandril</h3>
+            <br>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form action="/guardar_mandril" method="POST" enctype="multipart/form-data">
+            <div class="box-body">
+
+                <div class="row">
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">ID Mandril: </label> <label id="msg"> </label>
+                        <input type="text" class="form-control" id="id" value="" name="id"
+                            onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+
+                    <div class="form-group col-lg-3" id='divplat'>
+                        <label for="Titulo">Motivo Liberacion</label>
+                        <select class="form-control" name="motivo" id="motivo" required>
+                            <option value="" selected>Seleccionar</option>
+                            <option>Lanzamiento</option>
+                            <option>Incremento produccion</option>
+                            <option>Reemplazo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Numero de Parte: </label>
+                        <input type="text" class="form-control" id="parte" value="" name="parte"
+                            onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Cliente: </label>
+                        <input type="text" class="form-control" id="cliente" value="" name="cliente"
+                            onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+
+
+
+
+                    
+
+                </div>
+                <!------->
+
+
+
+                <!---
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Familia: </label>
+                        <input type="text" class="form-control" id="familia" value="" name="familia"
+                            onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+                    ---->
+
+
+                <!---
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Long. Green: </label>
+                        <input type="text" class="form-control" id="lgreen" value="" name="lgreen"
+                            onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <label for="Titulo">Long. Vulcanizado: </label>
+                        <input type="text" class="form-control" id="lvulca" value="" name="lvulca"
+                            onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+                </div>
+                ---->
+                <div class="row">
+
+                    <div class="form-group col-lg-3" id='divplat'>
+                        <label for="Titulo">Plataforma</label>
+                        <select class="form-control" name="plataforma" id="plataforma" required>
+                            <option value="" selected>Seleccionar</option>
+                            <% for (var i = 0; i < data1.length; i++) { %>
+                            <option><%= data1[i].subarea %></option>
+                            <% } %>
+
+                        </select>
+                    </div>
+
+
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Total a liberar </label>
+                        <input type="number" class="form-control" id="total" value="" name="total"
+                            onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Consecutivo Inicial: </label>
+                        <input type="number" class="form-control" id="consecutivo" value="" name="consecutivo"
+                            onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+                    <div class="form-group col-lg-3" id='divplat'>
+                        <label for="Titulo">Prioridad</label>
+                        <select class="form-control" name="prioridad" id="prioridad" required>
+                            <option value="" selected>Seleccionar</option>
+                            <option>Alta</option>
+                            <option>Media</option>
+                            <option>Baja</option>
+                        </select>
+                    </div>
+
+                    
+
+                    <div class="form-group col-lg-3" id='divplat'>
+                        <label for="Titulo">Tipo de Mandril</label>
+                        <select class="form-control" name="tipo" id="tipo" required>
+                            <option value="" selected>Seleccionar</option>
+                            <option>Prototipo</option>
+                            <option>Serie</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="inlineFormInputGroup">Fecha Revision (MM/DD/AA):</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><span class="fas fa-calendar"></span></div>
+                            </div>
+                            <input type="text" class="form-control" id="revision" name="revision" placeholder="mm/dd/aa"
+                                autocomplete="off" required>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="row">
+
+                    <!-- <div class="form-group col-lg-3">
+                    <label for="Titulo">Fecha Revision (MM/DD/AA): </label>
+                    <input type="text" class="form-control" id="revision" value="" name="revision"
+                        onkeyup="this.value = this.value.toUpperCase();" required>
+                </div> -->
+
+
+                </div>
+
+                <h4 class="box-title">Open pt.</h4>
+
+
+                <div class="row">
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Diametro Interno Minimo vs Plano: </label> <label id="msg"> </label>
+                        <input type="text" class="form-control" id="OpenDiametroMinimo" value=""
+                            name="OpenDiametroMinimo" onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Diametro Interno Maximo vs Plano: </label> <label id="msg"> </label>
+                        <input type="text" class="form-control" id="OpenDiametroMaximo" value=""
+                            name="OpenDiametroMaximo" onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Espesor manguera Minimo vs Plano: </label> <label id="msg"> </label>
+                        <input type="text" class="form-control" id="OpenEspesorMinimo" value="" name="OpenEspesorMinimo"
+                            onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Espesor manguera Maximo vs Plano: </label> <label id="msg"> </label>
+                        <input type="text" class="form-control" id="OpenEspesorMaximo" value="" name="OpenEspesorMaximo"
+                            onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+
+                </div>
+
+
+                <h4 class="box-title">Intermedio pt.</h4>
+
+
+                <div class="row">
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Diametro Interno Minimo vs Plano: </label> <label id="msg"> </label>
+                        <input type="text" class="form-control" id="InterDiametroMinimo" value=""
+                            name="InterDiametroMinimo" onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Diametro Interno Maximo vs Plano: </label> <label id="msg"> </label>
+                        <input type="text" class="form-control" id="InterDiametroMaximo" value=""
+                            name="InterDiametroMaximo" onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+
+
+                </div>
+
+                <h4 class="box-title">Boss pt.</h4>
+
+
+                <div class="row">
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Diametro Interno Minimo vs Plano: </label> <label id="msg"> </label>
+                        <input type="text" class="form-control" id="BossDiametroMinimo" value=""
+                            name="BossDiametroMinimo" onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Diametro Interno Maximo vs Plano: </label> <label id="msg"> </label>
+                        <input type="text" class="form-control" id="BossDiametroMaximo" value=""
+                            name="BossDiametroMaximo" onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Espesor manguera Minimo vs Plano: </label> <label id="msg"> </label>
+                        <input type="text" class="form-control" id="BossEspesorMinimo" value="" name="BossEspesorMinimo"
+                            onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="Titulo">Espesor manguera Maximo vs Plano: </label> <label id="msg"> </label>
+                        <input type="text" class="form-control" id="BossEspesorMaximo" value="" name="BossEspesorMaximo"
+                            onkeyup="this.value = this.value.toUpperCase();" required>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label for="titulo" id="lblfile">Seleccionar Plano PDF </label>
+                    <input type="file" name="fileUploader" id="fileUploader" accept="application/pdf" required>
+                </div>
+
+                <div class="form-group col-lg-3">
+                   
+                    <input type="text" class="form-control" id="planoRep" value="NUEVO" name="planoRep"
+                        onkeyup="this.value = this.value.toUpperCase();" hidden>
+                </div>
+
+                <!------->
+
+
+                <div class="box-footer">
+                    <button id="btnguardar" type="submit" class="btn btn-primary"
+                        onclick="$('form').attr('action', '/guardar_mandril');">Guardar</button>
+                </div>
+        </form>
+    </div>
+    <!-- /.box -->
+
+    <% include ./static/footer %>
+</div>
+</body>
+
+</html>
+
+<script>
+
+    $('#revision').datepicker({
+        format: "m/d/yyyy",
+        orientation: "bottom",
+        todayHighlight: true
+    });
+
+
+
+    $('#motivo').on('change', function (e) {
+
+
+        console.log( $('#planoRep').val())
+
+        if ($('#motivo').val() == "Incremento produccion") {
+
+            let xhr = new XMLHttpRequest();
+
+            xhr.open('GET', `/consulta_mandril/${$('#id').val()}`, true);
+
+
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    info = JSON.parse(this.responseText)
+              
+                    console.log(info)
+                    if(info.length==1){
+                       
+                        $('#parte').val(info[0].mandril_numparte);
+                        $('#cliente').val(info[0].mandril_cliente);
+                        $('#plataforma').val(info[0].mandril_plat);
+                        $('#tipo').val(info[0].mandril_tipo);
+                        $('#revision').val(info[0].mandril_revision);
+
+                        $('#OpenDiametroMinimo').val(info[0].ODiamMin);
+                        $('#OpenDiametroMaximo').val(info[0].ODiamMax);
+                        $('#OpenEspesorMinimo').val(info[0].OEspMin);
+                        $('#OpenEspesorMaximo').val(info[0].OEspMax);
+
+                        $('#InterDiametroMinimo').val(info[0].IDiamMin);
+                        $('#InterDiametroMaximo').val(info[0].IDiamMax);
+
+                        $('#BossDiametroMinimo').val(info[0].BDiamMin);
+                        $('#BossDiametroMaximo').val(info[0].BDiamMax);
+                        $('#BossEspesorMinimo').val(info[0].BEspMin);
+                        $('#BossEspesorMaximo').val(info[0].BEspMax);
+                 
+                        $('#planoRep').val(info[0].mandril_plano);
+                        $("#fileUploader").attr("required", false); 
+
+
+
+
+
+
+                        $('#parte').attr("readonly", true); 
+                        $('#cliente').attr("readonly", true); 
+                        $('#plataforma').attr("readonly", true); 
+                        $('#tipo').attr("readonly", true); 
+                        $('#revision').attr("readonly", true); 
+
+                        $('#OpenDiametroMinimo').attr("readonly", true); 
+                        $('#OpenDiametroMaximo').attr("readonly", true); 
+                        $('#OpenEspesorMinimo').attr("readonly", true); 
+                        $('#OpenEspesorMaximo').attr("readonly", true); 
+
+                        $('#InterDiametroMinimo').attr("readonly", true); 
+                        $('#InterDiametroMaximo').attr("readonly", true); 
+
+                        $('#BossDiametroMinimo').attr("readonly", true); 
+                        $('#BossDiametroMaximo').attr("readonly", true); 
+                        $('#BossEspesorMinimo').attr("readonly", true); 
+                        $('#BossEspesorMaximo').attr("readonly", true); 
+                 
+                        $('#planoRep').attr("readonly", true); 
+                        $("#fileUploader").attr("hidden", true); 
+                        $("#lblfile").attr("hidden", true); 
+
+
+
+
+
+
+
+
+                    
+                        
+                       
+                    }
+
+                } else if (this.status = 404) {
+                    // document.getElementById('text').innerHTML = 'Not Found';
+                }
+            }
+
+
+            xhr.onerror = function () {
+                console.log('Request Error...');
+            }
+
+            xhr.send();
+
+        }else{
+
+                        $('#parte').val("");
+                        $('#cliente').val("");
+                        $('#plataforma').val("");
+                        $('#tipo').val("");
+                        $('#revision').val("");
+
+                        $('#OpenDiametroMinimo').val("");
+                        $('#OpenDiametroMaximo').val("");
+                        $('#OpenEspesorMinimo').val("");
+                        $('#OpenEspesorMaximo').val("");
+
+                        $('#InterDiametroMinimo').val("");
+                        $('#InterDiametroMaximo').val("");
+
+                        $('#BossDiametroMinimo').val("");
+                        $('#BossDiametroMaximo').val("");
+                        $('#BossEspesorMinimo').val("");
+                        $('#BossEspesorMaximo').val("");
+
+
+                        // REPETIR
+                        $('#planoRep').val("NUEVO");
+                        $("#fileUploader").attr("required", true); 
+
+
+
+
+
+
+                        $('#parte').attr("readonly", false); 
+                        $('#cliente').attr("readonly", false); 
+                        $('#plataforma').attr("readonly", false); 
+                        $('#tipo').attr("readonly", false); 
+                        $('#revision').attr("readonly", false); 
+
+                        $('#OpenDiametroMinimo').attr("readonly", false); 
+                        $('#OpenDiametroMaximo').attr("readonly", false); 
+                        $('#OpenEspesorMinimo').attr("readonly", false); 
+                        $('#OpenEspesorMaximo').attr("readonly", false); 
+
+                        $('#InterDiametroMinimo').attr("readonly", false); 
+                        $('#InterDiametroMaximo').attr("readonly", false); 
+
+                        $('#BossDiametroMinimo').attr("readonly", false); 
+                        $('#BossDiametroMaximo').attr("readonly", false); 
+                        $('#BossEspesorMinimo').attr("readonly", false); 
+                        $('#BossEspesorMaximo').attr("readonly", false); 
+                 
+                        $('#planoRep').attr("readonly", false); 
+                        $("#fileUploader").attr("hidden", false); 
+                        $("#lblfile").attr("hidden", false); 
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+        id.addEventListener("keyup", function (e) {
+    
+            mandriles = <%- JSON.stringify(data2) %>;
+            var msg = document.getElementById("msg");
+            var idin = document.getElementById("id");
+    
+            var id = $('#id').val();
+    
+    
+            for (var i = 0; i < mandriles.length; i++) {
+                if (id == mandriles[i].mandril_id) {
+    
+                    $('#btnguardar').prop("disabled", true);
+                    msg.innerHTML = ' Ya registrado';
+                    idin.classList.remove('border-success');
+                    msg.classList.remove('text-success');
+                    msg.classList.add('text-danger');
+                    idin.classList.add('border-danger');
+                    break;
+    
+                } else {
+    
+                    $('#btnguardar').prop("disabled", false);
+                    msg.innerHTML = ' ';
+                    idin.classList.remove('border-danger');
+                    msg.classList.add('text-success');
+                    idin.classList.add('border-success');
+                }
+            }
+    
+        });
+    */
+</script>
