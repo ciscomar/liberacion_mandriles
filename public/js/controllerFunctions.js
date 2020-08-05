@@ -197,7 +197,7 @@ funcion.controllerTablaStatusTooling = (callback) => {
 funcion.controllerTablaStatusProcesos = (callback) => {
     db.query(`SELECT * FROM mandril_info, mandril_actividades
     WHERE ( mandril_info.mandril_status = mandril_actividades.activ_seq)
-    AND (mandril_status = 5 || mandril_status = 10 )`, function (err, result, fields) {
+    AND (mandril_status = 5 ||  mandril_status = 11 || mandril_status = 9 )`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {
@@ -211,7 +211,7 @@ funcion.controllerTablaStatusProcesos = (callback) => {
 funcion.controllerTablaStatusProcesos_Extrusion = (callback) => {
     db.query(`SELECT * FROM mandril_info, mandril_actividades
     WHERE ( mandril_info.mandril_status = mandril_actividades.activ_seq)
-    AND (mandril_status = 9 )`, function (err, result, fields) {
+    AND (mandril_status = 10 )`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {
@@ -511,11 +511,12 @@ funcion.controllerCorreosArea = (actividad, callback) => {
 
 funcion.controllerCorreosAll = ( callback) => {
 
-    db.query(`SELECT correo FROM mandril_notificar`, function (err, result, fields) {
+    db.query(`SELECT correo FROM mandril_notificar WHERE dep1<2 AND dep2<2 AND dep3<2 AND dep4<2 AND dep5<2 AND dep6<2 AND dep7<2  `, function (err, result, fields) {
         if (err) {
             callback(err, null);
         } else {
 
+            console.log(result)
             callback(null, result);
         }
     })

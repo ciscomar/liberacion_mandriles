@@ -22,7 +22,7 @@ controller.crear_mandril_GET = (req, res) => {
     let user = req.connection.user
 
     for (let i = 0; i < req.connection.userGroups.length; i++) {
-        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling') {
+        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling'  ) {
             access = true;
             break;
         }
@@ -190,8 +190,10 @@ controller.status_mandriles_GET = (req, res) => {
     areastring = '';
     let user = req.connection.user
 
+    
 
     for (let i = 0; i < req.connection.userGroups.length; i++) {
+        
 
         if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Lanzamientos' ) {
             access = true;
@@ -205,25 +207,25 @@ controller.status_mandriles_GET = (req, res) => {
                 areastring = 'Tooling'
                 break;
             } else
-                if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Procesos') {
+                if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Procesos' ) {
                     access = true;
                     area = 3;
                     areastring = 'Procesos'
                     break;
                 } else
-                    if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Procesos_Extrusion' ) {
+                    if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Procesos_Extrusion'   ) {
                         access = true;
                         area = 4;
                         areastring = 'Procesos Extrusion'
                         break;
                     } else
-                        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Calidad') {
+                        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Calidad' ) {
                             access = true;
                             area = 5;
                             areastring = 'Calidad'
                             break;
                         } else
-                            if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Calidad_Ensamble') {
+                            if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Calidad_Ensamble' ) {
 
                                 access = true;
                                 area = 6;
@@ -418,10 +420,16 @@ controller.guardar_liberar_POST = (req, res) => {
             if (err) throw err;
         });
 
+    }
+
+    if (IDE != undefined) {
+
         funcion.controllerUpdateReporte(mandril_id, mandril_consec, IDE, ODE, BDE, ODI, BDI, OEsp, BEsp, (err, resu) => {
             if (err) throw err;
         });
     }
+
+
     if (CODI != undefined) {
 
         funcion.controllerUpdateReporteCalidad(mandril_id, mandril_consec, CODI, CBDI, COEsp, CBEsp, COG, CBG, (err, resu) => {
@@ -464,7 +472,7 @@ controller.guardar_liberar_POST = (req, res) => {
 
     }
 
-    if (actividad == 10) {
+    if (actividad == 11) {
         estadom = 'Liberado'
     } else {
         estadom = 'Proceso'
@@ -496,7 +504,7 @@ controller.guardar_liberar_POST = (req, res) => {
 
         consecutivost = req.body.consecutivosI
         allconsecutivos= consecutivost.split(',')
-        //console.log(allconsecutivos)
+        
         for (let i = 0; i < allconsecutivos.length; i++) {
 
             funcion.controllerInsertMandrilHistorial(mandril_id, allconsecutivos[i], username, actividad, comentario, status2, (err, result2) => {
@@ -539,7 +547,7 @@ controller.guardar_liberar_POST = (req, res) => {
             funcion.controllerActividad(actividad, (err, actividadAnt) => {
                 if (err) throw err;
 
-                if (actividad == 9) {
+                if (actividad == 10) {
                     funcion.controllerCorreosAll((err, correo) => {
                         for (var i = 0; i < correo.length; i++) {
 
@@ -774,7 +782,7 @@ controller.guardar_notificar_POST = (req, res) => {
      
         dep1=2
     }
-    console.log(dep1)
+    
     dep2 = req.body.dep2
     if (dep2 == undefined) {
         dep2 = 0
@@ -1044,6 +1052,8 @@ controller.reemplazar_plano_POST = (req, res) => {
 
 
     fileUploader.mv('D:/DEL/liberacion_mandriles/' + idplano + '.pdf', function (err) {
+        //fileUploader.mv('C:/test/' + idplano + '.pdf', function (err) {
+
         if (err)
             return res.status(500).send(err);
     });
@@ -1054,7 +1064,7 @@ controller.reemplazar_plano_POST = (req, res) => {
 
 
         for (let i = 0; i < resultMandriles.length; i++) {
-            funcion.controllerInsertMandrilHistorial(mandril_id, resultMandriles[i].mandril_consec, username, 12, comentario, "Cambio de Plano", (err, result2) => {
+            funcion.controllerInsertMandrilHistorial(mandril_id, resultMandriles[i].mandril_consec, username, 13, comentario, "Cambio de Plano", (err, result2) => {
 
             });
         }

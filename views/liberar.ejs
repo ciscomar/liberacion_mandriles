@@ -47,7 +47,7 @@
                     <% }%>
 
 
-                <% if(data.actividad == 9 && accion == 'liberar'){%>
+                <% if(data.actividad == 10 && accion == 'liberar'){%>
                 <div class="row">
                     <div class="form-group col-lg-6">
                         <label for="Titulo">Longitud Green:</label>
@@ -85,10 +85,7 @@
                 <% if(data.actividad == 5 && accion == 'liberar'){%>
                     <div class="row">
   
-                        <div class="form-group col-lg-6">
-                            <label for="Titulo">Longitud Vulcanizado:</label>
-                            <input type="text" class="form-control" id="lvulca" value="" name="lvulca" required>
-                        </div>
+                        
                         <div class="form-group col-lg-6">
                             <label for="Titulo">Intermedio pt. DE mandril real (mm):</label>
                             <input type="text" class="form-control" id="IDE" value="" name="IDE" required>
@@ -142,6 +139,17 @@
                     </div>
                     </div>
                     <% }%>
+
+
+                    <% if(data.actividad == 9 && accion == 'liberar'){%>
+
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="Titulo">Longitud Vulcanizado:</label>
+                                <input type="text" class="form-control" id="lvulca" value="" name="lvulca" required>
+                            </div>
+                        </div>
+                        <% }%>
 
                 <% if(data.actividad == 6 && accion == 'liberar'){%>
                 <div class="row">
