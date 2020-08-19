@@ -480,7 +480,7 @@ controller.guardar_liberar_POST = (req, res) => {
 
 
     //<!--08/04/2020-->liberar todos mandriles iguales en lanzamientos en misma actividad
-    if (actividad == 3  || actividad == 9  || actividad == 2) {
+    if (actividad == 3  || actividad == 10  || actividad == 2) {
 
         funcion.selectAllLiberar(mandril_id, actividad, numeroplano, (err, allMandriles) => {
             if (err) throw err;
