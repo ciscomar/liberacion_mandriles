@@ -867,7 +867,7 @@ funcion.sendNotificacion = (actividad) => {
 
     db.query(`SELECT * FROM mandril_info, mandril_actividades 
     WHERE ( mandril_info.mandril_status = ${actividad.activ_seq} AND mandril_info.mandril_status = mandril_actividades.activ_seq)
-    AND mandril_info.mandril_estado !='Liberado'`, function (err, mandriles, fields) {
+    AND mandril_info.mandril_estado !='Liberado' AND mandril_info.mandril_activo= 'Activo' `, function (err, mandriles, fields) {
         if (err) {
             console.log(err)
         } else {
