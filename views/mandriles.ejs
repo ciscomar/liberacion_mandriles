@@ -24,7 +24,7 @@
     </div>
 
 </div>
-<div class="table-responsive">
+<div class="table-responsive text-center">
     <div class="containerTable">
         <!-- /.box-header -->
         <div class="table table-responsive" id="table">
@@ -33,7 +33,7 @@
 
                     <th><span class="icoSidebar fas fa-history"></span> Historial</th>
                     <th><span class="icoSidebar fas fa-hashtag"></span> ID Mandril</th>
-                    <th><span class="icoSidebar fas fa-wrench"></span> Plano</th>
+                    <th><span class="icoSidebar fas fa-wrench"></span> Plano/CMM</th>
                     <th><span class="icoSidebar fas fa-wrench"></span> Reporte</th>
                     <th><span class="icoSidebar fas fa-calendar-check"></span> Estado</th>
                     <th><span class="icoSidebar fas fa-car"></span> Numero de Parte</th>
@@ -49,6 +49,7 @@
                     <th><span class="icoSidebar fas fa-warehouse"></span> Area Actual</th>
                     <th><span class="icoSidebar fas fa-arrow-up"></span> Prioridad</th>
                     <th><span class="icoSidebar fas fa-stopwatch"></span> Tiempo Actividad Actual</th>
+                    <th><span class="icoSidebar fas fa-stopwatch"></span> Estatus</th>
 
 
                 </thead>
@@ -70,6 +71,17 @@
                             }else{
                                 classBtn="danger"
                             }
+
+                            if(data[i].mandril_activo == "Obsoleto"){
+                                classBtn= "secondary"
+                                letterColor= "color:gray;"
+                             }else{
+                
+                                letterColor= "color:dark;"
+                             }
+                             %>
+
+
                             %>
 
                     <tr class="table_roww">
@@ -82,18 +94,20 @@
                         </td>
                         
 
-                        <td class="table_id" width='10%'><%= data[i].mandril_id %>-<%= data[i].mandril_consec %></td>
+                        <td class="table_id " width='10%'  style="<%=letterColor%>"><%= data[i].mandril_id %>-<%= data[i].mandril_consec %></td>
                         <td class="text-center " width='5%'> 
                                 <form method="POST">
                                 <button type="submit" formaction="/plano" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Plano"><span
                                 class="icoWhite fas fa-wrench"></span></button>
-                                <input type="text" name="idmandrilp" value="<%=data[i].mandril_id%>-<%=data[i].mandril_plano%>" hidden>
+                                <input type="text" name="idmandrilp" value="<%=data[i].mandril_id%>-<%=data[i].mandril_consec%>" hidden>
                                 <input type="text" name="idmandrilplano" value="P<%=data[i].mandril_id%>-<%= data[i].mandril_plano%>" hidden>
+                                <input type="text" name="idmandrilcmm" value="C<%=data[i].mandril_id%>-<%= data[i].mandril_cmm%>" hidden>
                                 <input type="text" name="tipo" value="plano" hidden>
                             </form>
                             </td>
 
                             <td class="text-center " width='5%'> 
+                                <p hidden>test</p>
                                 <form method="POST">
                                 <button type="submit" formaction="/mandril_info" class="btn btn-<%=classBtn%>" data-toggle="tooltip" data-placement="right" title="Reporte"><span
                                 class="icoWhite fas fa-tasks"></span></button>
@@ -116,26 +130,26 @@
                                         <input type="text" name="tipo" value="reporte" hidden>
                                         
                                     </form></td> -->
-                                    <td>
+                                    <td style="<%=letterColor%>">
                                         Liberado
                                     </td>
                             <%}else{%>
-                        <td><%= data[i].mandril_estado%></td>
+                        <td style="<%=letterColor%>"><%= data[i].mandril_estado%></td>
                         <%}%>
-                        <td><%= data[i].mandril_numparte%></td>
-                        <td><%= data[i].mandril_plat%></td>
-                        <td><%= data[i].mandril_tipo %></td>
-                        <td><%= data[i].mandril_motivo %></td>
+                        <td style="<%=letterColor%>"><%= data[i].mandril_numparte%></td>
+                        <td style="<%=letterColor%>"><%= data[i].mandril_plat%></td>
+                        <td style="<%=letterColor%>"><%= data[i].mandril_tipo %></td>
+                        <td style="<%=letterColor%>"><%= data[i].mandril_motivo %></td>
                         <!-- <td><%= data[i].mandril_lvulca %></td>
                         <td><%= data[i].mandril_espesor %></td>
                         <td><%= data[i].mandril_diametro %></td>
                         <td><%= data[i].mandril_groove %></td> -->
-                        <td><%= formatted_date %></td>
-                        <td><%= (data[i].activ_descripcion).substring(0,8)+"..." %></td>
-                        <td><%= data[i].area_desc  %></td>
-                        <td><%= data[i].mandril_prioridad  %></td>
+                        <td style="<%=letterColor%>"><%= formatted_date %></td>
+                        <td style="<%=letterColor%>"><%= (data[i].activ_descripcion).substring(0,8)+"..." %></td>
+                        <td style="<%=letterColor%>"><%= data[i].area_desc  %></td>
+                        <td style="<%=letterColor%>"><%= data[i].mandril_prioridad  %></td>
 
-                        <%if(data[i].mandril_status !='20' && data[i].mandril_estado=="Proceso") { %>
+                        <%if(data[i].mandril_status !='20' && data[i].mandril_estado=="Proceso" && data[i].mandril_activo=="Activo") { %>
                         <td>
                             <div class="time-elapsed"></div>
                             <div class="date_start_time" data-date-time="<%= data[i].mandril_ufecha %>"></div>
@@ -144,7 +158,7 @@
                         <% }else { %>
                         <td></td>
                         <% } %>
-
+                        <td style="<%=letterColor%>"><%= data[i].mandril_activo  %></td>
 
                     </tr>
                     <% } %>

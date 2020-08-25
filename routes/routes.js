@@ -22,6 +22,7 @@ router.post('/reemplazar_plano', routesController.reemplazar_plano_POST);
 router.post('/mandril_info', routesController.mandril_info_POST);
 router.post('/historial_info', routesController.historial_info_POST);
 router.get('/consulta_mandril/:id', routesController.consulta_mandril_GET);
+router.post('/obsoleto', routesController.obsoleto_POST);
 
 
 router.get('*', (req, res) => {

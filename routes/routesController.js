@@ -22,7 +22,7 @@ controller.crear_mandril_GET = (req, res) => {
     let user = req.connection.user
 
     for (let i = 0; i < req.connection.userGroups.length; i++) {
-        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling'  ) {
+        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling') {
             access = true;
             break;
         }
@@ -53,7 +53,7 @@ controller.notificar_GET = (req, res) => {
     let user = req.connection.user
 
     for (let i = 0; i < req.connection.userGroups.length; i++) {
-        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Admin' ) {
+        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Admin') {
             access = true;
             break;
         }
@@ -106,30 +106,30 @@ controller.guardar_mandril_POST = (req, res) => {
     consecutivo = req.body.consecutivo
     let newconsecutivo
     let lastconsecutivo
-    planoRep= req.body.planoRep
+    planoRep = req.body.planoRep
 
-   
-    
+
+
 
     funcion.controllerLastPlano(id, (err, numplano) => {
         if (err) throw err;
-        
+
         numplano++;
-       if(planoRep == "NUEVO"){
-      
-        let fileUploader = req.files.fileUploader;
+        if (planoRep == "NUEVO") {
+
+            let fileUploader = req.files.fileUploader;
             fileUploader.mv('D:/DEL/liberacion_mandriles/' + 'P' + id + '-' + numplano + '.pdf', function (err) {
-            //fileUploader.mv('C:/test/' + 'P' + id + '-' + numplano + '.pdf', function (err) {
+                //fileUploader.mv('C:/test/' + 'P' + id + '-' + numplano + '.pdf', function (err) {
                 if (err)
                     return res.status(500).send(err);
             });
-             
-        }else{
-            numplano=planoRep
+
+        } else {
+            numplano = planoRep
         }
 
-        
-        
+
+
         newconsecutivo = consecutivo
         // funcion.controllerLastConsecutivo(id, (err, consecutivo) => {
         //     if (err) throw err;
@@ -138,7 +138,7 @@ controller.guardar_mandril_POST = (req, res) => {
 
 
 
-        
+
 
         for (let i = 0; i < total; i++) {
 
@@ -190,42 +190,42 @@ controller.status_mandriles_GET = (req, res) => {
     areastring = '';
     let user = req.connection.user
 
-    
+
 
     for (let i = 0; i < req.connection.userGroups.length; i++) {
-        
 
-        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Lanzamientos' ) {
+
+        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Lanzamientos') {
             access = true;
             area = 1;
             areastring = 'Lanzamientos'
             break;
         } else
-            if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling'  ) {
+            if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling') {
                 access = true;
                 area = 2;
                 areastring = 'Tooling'
                 break;
             } else
-                if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Procesos' ) {
+                if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Procesos') {
                     access = true;
                     area = 3;
                     areastring = 'Procesos'
                     break;
                 } else
-                    if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Procesos_Extrusion'   ) {
+                    if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Procesos_Extrusion') {
                         access = true;
                         area = 4;
                         areastring = 'Procesos Extrusion'
                         break;
                     } else
-                        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Calidad' ) {
+                        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Calidad') {
                             access = true;
                             area = 5;
                             areastring = 'Calidad'
                             break;
                         } else
-                            if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Calidad_Ensamble' ) {
+                            if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Calidad_Ensamble') {
 
                                 access = true;
                                 area = 6;
@@ -330,13 +330,13 @@ controller.liberar_POST = (req, res) => {
     descripcion = req.body.descripcion;
     numeroplano = req.body.numeroplano
 
-    funcion.selectAllLiberar(id, actividad,numeroplano,  (err, result) => {
+    funcion.selectAllLiberar(id, actividad, numeroplano, (err, result) => {
         if (err) throw err;
 
-    res.render('liberar.ejs', {
-        user: username, data: { id, actividad, consecutivo, descripcion, numeroplano }, accion: accion, data2:result
+        res.render('liberar.ejs', {
+            user: username, data: { id, actividad, consecutivo, descripcion, numeroplano }, accion: accion, data2: result
+        });
     });
-});
 
 
 };
@@ -460,17 +460,11 @@ controller.guardar_liberar_POST = (req, res) => {
     //         if (err) throw err;
     //     });
     // }
-    let fileExist = req.files
 
-    if (fileExist != null) {
-        let fileUploader = req.files.fileUploader;
-        fileUploader.mv('D:/DEL/liberacion_mandriles/' + 'F' + id + '.pdf', function (err) {
-            if (err)
-                return res.status(500).send(err);
 
-        });
 
-    }
+
+
 
     if (actividad == 11) {
         estadom = 'Liberado'
@@ -480,7 +474,7 @@ controller.guardar_liberar_POST = (req, res) => {
 
 
     //<!--08/04/2020-->liberar todos mandriles iguales en lanzamientos en misma actividad
-    if (actividad == 3  || actividad == 10  || actividad == 2) {
+    if (actividad == 3 || actividad == 10 || actividad == 2) {
 
         funcion.selectAllLiberar(mandril_id, actividad, numeroplano, (err, allMandriles) => {
             if (err) throw err;
@@ -500,11 +494,11 @@ controller.guardar_liberar_POST = (req, res) => {
         });
 
 
-    }else if(actividad == 7 || actividad == 4){
+    } else if (actividad == 7 || actividad == 4) {
 
         consecutivost = req.body.consecutivosI
-        allconsecutivos= consecutivost.split(',')
-        
+        allconsecutivos = consecutivost.split(',')
+
         for (let i = 0; i < allconsecutivos.length; i++) {
 
             funcion.controllerInsertMandrilHistorial(mandril_id, allconsecutivos[i], username, actividad, comentario, status2, (err, result2) => {
@@ -517,6 +511,39 @@ controller.guardar_liberar_POST = (req, res) => {
             });
 
         }
+
+
+
+
+        let fileExist = req.files
+
+        if (fileExist != null) {
+            funcion.controllerLastCmm(mandril_id, (err, numcmm) => {
+                if (err) throw err;
+                numcmm++;
+
+                let fileUploader = req.files.fileUploader;
+                fileUploader.mv('D:/DEL/liberacion_mandriles/' + 'C' + mandril_id + '-' +numcmm + '.pdf', function (err) {
+                    //fileUploader.mv('C:/test/' + 'C' + mandril_id + '-' +numcmm + '.pdf', function (err) {
+                    if (err)
+                        return res.status(500).send(err);
+
+                });
+
+
+                for (let i = 0; i < allconsecutivos.length; i++) {
+
+                    funcion.controllerUpdateCmm(mandril_id, allconsecutivos[i], numcmm, (err, result3) => {
+                        if (err) throw err;
+    
+                    });
+
+                }
+
+
+            })
+        }
+
 
 
 
@@ -627,22 +654,22 @@ controller.guardar_rechazar_POST = (req, res) => {
     comentario = req.body.comentario;
     status2 = 'Rechazado'
     actividadNumber = parseInt(actividad)
-    
+
     color2 = 'danger'
     estado = 'Rechazado'
     numeroplano = req.body.numeroplano
     regresarA = req.body.regresar
 
-    if (regresarA== 'anterior'){
-        nextActividad= actividad-1
+    if (regresarA == 'anterior') {
+        nextActividad = actividad - 1
 
-    }else{
+    } else {
 
         nextActividad = 2
     }
 
     if (actividad == 3 || actividad == 2 || actividad == 4) {
-       
+
         funcion.selectAllLiberar(mandril_id, actividad, numeroplano, (err, allMandriles) => {
             if (err) throw err;
 
@@ -658,7 +685,7 @@ controller.guardar_rechazar_POST = (req, res) => {
 
             }
         });
-    }else{
+    } else {
 
         funcion.controllerInsertMandrilHistorial(mandril_id, mandril_consec, username, actividad, comentario, status2, (err, result2) => {
             if (err) throw err;
@@ -769,7 +796,7 @@ controller.mandriles_GET = (req, res) => {
 
 controller.guardar_notificar_POST = (req, res) => {
 
-    
+
     esc = req.body.esc
 
     correo = req.body.correo
@@ -778,46 +805,46 @@ controller.guardar_notificar_POST = (req, res) => {
 
     if (dep1 == undefined) {
         dep1 = 0
-    }else if(esc==1 && dep1==1){
-     
-        dep1=2
+    } else if (esc == 1 && dep1 == 1) {
+
+        dep1 = 2
     }
-    
+
     dep2 = req.body.dep2
     if (dep2 == undefined) {
         dep2 = 0
-    }else if(esc==1 && dep2==1){
-        dep2=2
+    } else if (esc == 1 && dep2 == 1) {
+        dep2 = 2
     }
     dep3 = req.body.dep3
     if (dep3 == undefined) {
         dep3 = 0
-    }else if(esc==1 && dep3==1){
-        dep3=2
+    } else if (esc == 1 && dep3 == 1) {
+        dep3 = 2
     }
     dep4 = req.body.dep4
     if (dep4 == undefined) {
         dep4 = 0
-    }else if(esc==1 && dep4==1){
-        dep4=2
+    } else if (esc == 1 && dep4 == 1) {
+        dep4 = 2
     }
     dep5 = req.body.dep5
     if (dep5 == undefined) {
         dep5 = 0
-    }else if(esc==1 && dep5==1){
-        dep5=2
+    } else if (esc == 1 && dep5 == 1) {
+        dep5 = 2
     }
     dep6 = req.body.dep6
     if (dep6 == undefined) {
         dep6 = 0
-    }else if(esc==1 && dep6==1){
-        dep6=2
+    } else if (esc == 1 && dep6 == 1) {
+        dep6 = 2
     }
     dep7 = req.body.dep7
     if (dep7 == undefined) {
         dep7 = 0
-    }else if(esc==1 && dep7==1){
-        dep7=2
+    } else if (esc == 1 && dep7 == 1) {
+        dep7 = 2
     }
 
 
@@ -989,6 +1016,8 @@ controller.guardar_espera_POST = (req, res) => {
 
 controller.plano_POST = (req, res) => {
 
+
+
     let user = req.connection.user
     idmandril = req.body.idmandrilp
     idplano = req.body.idmandrilplano
@@ -1000,11 +1029,22 @@ controller.plano_POST = (req, res) => {
     consecutivo = req.body.consecutivo
     actividad = req.body.actividad
     descripcion = req.body.descripcion
-    numeroplano=req.body.numeroplano
+    numeroplano = req.body.numeroplano
+    idmandrilcmm = req.body.idmandrilcmm
     //<!--08/04/2020-->
+
+
+    for (let i = 0; i < req.connection.userGroups.length; i++) {
+        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling') {
+            areaplano2 = 'ToolingObsoleto'
+            break;
+        }
+    }
+
 
     mandril_id = idmandril.substring(0, idmandril.indexOf("-"));
     mandril_consec = idmandril.substring(idmandril.lastIndexOf("-") + 1)
+
 
 
     funcion.SelectInfoPlano(mandril_id, mandril_consec, (err, result) => {
@@ -1013,7 +1053,7 @@ controller.plano_POST = (req, res) => {
 
 
         res.render('plano.ejs', {
-            user: user, idmandril, idplano, areaplano, data: result, tipo, idmandrill, consecutivo, actividad, descripcion,numeroplano
+            user: user, idmandril, idplano, areaplano, data: result, tipo, idmandrill, consecutivo, actividad, descripcion, numeroplano, idmandrilcmm
         });
     });
 
@@ -1030,7 +1070,7 @@ controller.reemplazar_plano_POST = (req, res) => {
     let comentario = req.body.comentario
 
     areaplano = req.body.areaplano;
-
+console.log(idmandril);
     mandril_id = idmandril.substring(0, idmandril.indexOf("-"));
     mandril_consec = idmandril.substring(idmandril.lastIndexOf("-") + 1)
 
@@ -1216,19 +1256,74 @@ controller.historial_info_POST = (req, res) => {
 
 controller.consulta_mandril_GET = (req, res) => {
 
-    
+
     mandril = req.params.id;
-    
+
     funcion.getInfoMandril(mandril, (err, result) => {
         if (err) throw err;
-           
-            res.send(result);
-        });
-  
+
+        res.send(result);
+    });
+
 };
 
 
 
+
+controller.obsoleto_POST = (req, res) => {
+    idmandril = req.body.idmandrilObsoleto
+    let user = req.connection.user
+
+    mandril_id = idmandril.substring(0, idmandril.indexOf("-"));
+
+
+    funcion.UpdateObsoleto(mandril_id, (err, result) => {
+        if (err) throw err;
+    })
+
+
+
+
+    funcion.controllerTablaMandriles((err, result2) => {
+        if (err) throw err;
+        funcion.controllerCountMandrilesAll('Proceso', "Proceso", (err, result3) => {
+            if (err) throw err;
+            funcion.controllerCountMandrilesAll('Liberado', "Liberado", (err, result4) => {
+                if (err) throw err;
+                funcion.controllerCountMandrilesAll('Rechazado', "Rechazado", (err, result5) => {
+                    if (err) throw err;
+                    funcion.controllerCountMandrilAreaL((err, result6) => {
+                        if (err) throw err;
+                        funcion.controllerCountMandrilAreaT((err, result7) => {
+                            if (err) throw err;
+                            funcion.controllerCountMandrilAreaPs((err, result8) => {
+                                if (err) throw err;
+                                funcion.controllerCountMandrilAreaC((err, result9) => {
+                                    if (err) throw err;
+
+
+                                    mandrilProceso = result3[0].Proceso
+                                    mandrilLiberado = result4[0].Liberado
+                                    mandrilRechazado = result5[0].Rechazado
+                                    mandrilLanzamientos = result6[0].Lanzamientos
+                                    mandrilTooling = result7[0].Tooling
+                                    mandrilProcesos = result8[0].Procesos
+                                    mandrilCalidad = result9[0].Calidad
+
+                                    res.render('mandriles.ejs', {
+                                        user: user, data: result2, data2: { mandrilProceso, mandrilRechazado, mandrilLiberado }, data3: { mandrilLanzamientos, mandrilTooling, mandrilProcesos, mandrilCalidad }
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+
+}
 
 
 

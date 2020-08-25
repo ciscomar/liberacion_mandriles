@@ -80,8 +80,8 @@ funcion.controllerPlataformas = (callback) => {
 
 funcion.controllerInsertMandril = (id,consecutivo, numparte, plat,cliente,motivo,tipo, prioridad, plano,revision,  callback) => {
     db.query(`
-    INSERT INTO mandril_info (mandril_id,mandril_consec, mandril_numparte, mandril_plat,mandril_cliente,mandril_motivo,mandril_tipo, mandril_fam, mandril_lgreen, mandril_lvulca,mandril_ufecha, mandril_status, mandril_estado, mandril_prioridad, mandril_plano, mandril_revision)
-    VALUES( '${id}', ${consecutivo}, '${numparte}', '${plat}','${cliente}', '${motivo}', '${tipo}' ,'', '','', NOW(), '2','Proceso','${prioridad}', ${plano},'${revision}')`, function (err, result, fields) {
+    INSERT INTO mandril_info (mandril_id,mandril_consec, mandril_numparte, mandril_plat,mandril_cliente,mandril_motivo,mandril_tipo, mandril_fam, mandril_lgreen, mandril_lvulca,mandril_ufecha, mandril_status, mandril_estado, mandril_prioridad, mandril_plano, mandril_revision, mandril_activo, mandril_cmm)
+    VALUES( '${id}', ${consecutivo}, '${numparte}', '${plat}','${cliente}', '${motivo}', '${tipo}' ,'', '','', NOW(), '2','Proceso','${prioridad}', ${plano},'${revision}', 'Activo',0)`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {
@@ -169,7 +169,7 @@ funcion.controllerUpdateInfoPlano = (id, POpenDiametroMinimo,
 funcion.controllerTablaStatusLanzamientos = (callback) => {
     db.query(`SELECT * FROM mandril_info, mandril_actividades
     WHERE ( mandril_info.mandril_status = mandril_actividades.activ_seq)
-    AND (mandril_status = 3 )`, function (err, result, fields) {
+    AND (mandril_status = 3 ) AND mandril_activo="Activo"`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {
@@ -183,7 +183,7 @@ funcion.controllerTablaStatusLanzamientos = (callback) => {
 funcion.controllerTablaStatusTooling = (callback) => {
     db.query(`SELECT * FROM mandril_info, mandril_actividades
     WHERE ( mandril_info.mandril_status = mandril_actividades.activ_seq)
-    AND (mandril_status = 2 || mandril_status = 4 || mandril_status = 7)`, function (err, result, fields) {
+    AND (mandril_status = 2 || mandril_status = 4 || mandril_status = 7) AND mandril_activo="Activo"`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {
@@ -197,7 +197,7 @@ funcion.controllerTablaStatusTooling = (callback) => {
 funcion.controllerTablaStatusProcesos = (callback) => {
     db.query(`SELECT * FROM mandril_info, mandril_actividades
     WHERE ( mandril_info.mandril_status = mandril_actividades.activ_seq)
-    AND (mandril_status = 5 ||  mandril_status = 11 || mandril_status = 9 )`, function (err, result, fields) {
+    AND (mandril_status = 5 ||  mandril_status = 11 || mandril_status = 9 ) AND mandril_activo="Activo"`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {
@@ -211,7 +211,7 @@ funcion.controllerTablaStatusProcesos = (callback) => {
 funcion.controllerTablaStatusProcesos_Extrusion = (callback) => {
     db.query(`SELECT * FROM mandril_info, mandril_actividades
     WHERE ( mandril_info.mandril_status = mandril_actividades.activ_seq)
-    AND (mandril_status = 10 )`, function (err, result, fields) {
+    AND (mandril_status = 10 ) AND mandril_activo="Activo"`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {
@@ -225,7 +225,7 @@ funcion.controllerTablaStatusProcesos_Extrusion = (callback) => {
 funcion.controllerTablaStatusCalidad = (callback) => {
     db.query(`SELECT * FROM mandril_info, mandril_actividades
     WHERE ( mandril_info.mandril_status = mandril_actividades.activ_seq)
-    AND (mandril_status = 6 )`, function (err, result, fields) {
+    AND (mandril_status = 6 ) AND mandril_activo="Activo"`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {
@@ -239,7 +239,7 @@ funcion.controllerTablaStatusCalidad = (callback) => {
 funcion.controllerTablaStatusCalidad_Ensamble = (callback) => {
     db.query(`SELECT * FROM mandril_info, mandril_actividades
     WHERE ( mandril_info.mandril_status = mandril_actividades.activ_seq)
-    AND (mandril_status = 8 )`, function (err, result, fields) {
+    AND (mandril_status = 8 ) AND mandril_activo="Activo"`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {
@@ -253,7 +253,7 @@ funcion.controllerTablaStatusCalidad_Ensamble = (callback) => {
 funcion.controllerTablaStatusProduccion = (callback) => {
     db.query(`SELECT * FROM mandril_info, mandril_actividades
     WHERE ( mandril_info.mandril_status = mandril_actividades.activ_seq)
-    AND ( mandril_status = 14 || mandril_status = 19 )`, function (err, result, fields) {
+    AND ( mandril_status = 14 || mandril_status = 19 ) AND mandril_activo="Activo"`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {
@@ -309,7 +309,7 @@ funcion.controllerHistorial = (mandril_id, mandril_consec, callback) => {
 funcion.controllerTablaMandriles = (callback) => {
     db.query(`SELECT * FROM mandril_info, mandril_actividades, aprobacion_areas
     WHERE ( mandril_info.mandril_status = mandril_actividades.activ_seq)
-    AND (aprobacion_areas.area_id=mandril_actividades.activ_area) ORDER BY mandril_estado DESC`, function (err, result, fields) {
+    AND (aprobacion_areas.area_id=mandril_actividades.activ_area) ORDER BY mandril_activo ASC`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {
@@ -324,6 +324,21 @@ funcion.controllerUpdateMandrilStatus = (id,consecutivo, nextActividad, estado, 
     mandril_status= "${nextActividad}",
     mandril_ufecha= NOW(),
     mandril_estado='${estado}'
+    WHERE mandril_id = ${id}
+    AND mandril_consec=${consecutivo}`, function (err, result, fields) {
+            if (err) {
+                callback(err, null);
+            } else {
+
+                callback(null, result);
+            }
+        })
+
+}
+
+funcion.controllerUpdateCmm = (id,consecutivo, cmm, callback) => {
+    db.query(`UPDATE mandril_info SET 
+    mandril_cmm= ${cmm}
     WHERE mandril_id = ${id}
     AND mandril_consec=${consecutivo}`, function (err, result, fields) {
             if (err) {
@@ -356,7 +371,7 @@ funcion.UpdateCambioPlano= (id, idplano, callback) => {
 
 
 funcion.controllerCountMandrilesAll = (as, status, callback) => {
-    db.query(`SELECT COUNT(*) AS ${as} FROM mandril_info WHERE mandril_estado="${status}"`, function (err, result, fields) {
+    db.query(`SELECT COUNT(*) AS ${as} FROM mandril_info WHERE mandril_estado="${status}" AND mandril_activo="Activo"`, function (err, result, fields) {
         if (err) {
             callback(err, null);
         } else {
@@ -369,7 +384,7 @@ funcion.controllerCountMandrilesAll = (as, status, callback) => {
 
 funcion.controllerCountMandrilAreaL = (callback) => {
     db.query(`SELECT COUNT(*) AS 'Lanzamientos' FROM mandril_info WHERE 
-     mandril_status = '3'
+     mandril_status = '3' AND mandril_activo="Activo"
       `, function (err, result, fields) {
             if (err) {
                 callback(err, null);
@@ -399,7 +414,7 @@ funcion.controllerCountMandrilAreaT = (callback) => {
      mandril_status = '2'
      || mandril_status = '4'
      || mandril_status = '7'
-
+     AND mandril_activo="Activo"
       `, function (err, result, fields) {
             if (err) {
                 callback(err, null);
@@ -416,6 +431,8 @@ funcion.controllerCountMandrilAreaPs = (callback) => {
      mandril_status = '5'
      || mandril_status = '9'
      || mandril_status = '10'
+     || mandril_status = '11'
+     AND mandril_activo="Activo"
       `, function (err, result, fields) {
             if (err) {
                 callback(err, null);
@@ -431,6 +448,7 @@ funcion.controllerCountMandrilAreaC = (callback) => {
     db.query(`SELECT COUNT(*) AS 'Calidad' FROM mandril_info WHERE 
      mandril_status = '6'
      || mandril_status = '8'
+     AND mandril_activo="Activo"
       `, function (err, result, fields) {
             if (err) {
                 callback(err, null);
@@ -583,6 +601,27 @@ funcion.controllerLastPlano= (id, callback) => {
 
             if(result !=''){
             callback(null, result[0].mandril_plano);
+            }else{
+                callback(null, 0);
+            }
+        }
+    })
+}
+
+
+funcion.controllerLastCmm= (id, callback) => {
+
+    db.query(`SELECT mandril_cmm
+    FROM mandril_info
+    WHERE mandril_id='${id}'
+    ORDER BY mandril_cmm DESC
+    LIMIT 1`, function (err, result, fields) {
+        if (err) {
+            callback(err, null);
+        } else {
+
+            if(result !=''){
+            callback(null, result[0].mandril_cmm);
             }else{
                 callback(null, 0);
             }
@@ -795,6 +834,19 @@ funcion.getInfoMandril= (mandril, callback) => {
     db.query(`SELECT *
     FROM mandril_info, mandril_plano WHERE mandril_info.mandril_id = mandril_plano.mandril_id
      AND mandril_info.mandril_id='${mandril}' ORDER BY mandril_info.mandril_reg DESC LIMIT 1`, function (err, result, fields) {
+        if (err) {
+            callback(err, null);
+        } else {
+
+          
+            callback(null, result);
+        }
+    })
+}
+
+
+funcion.UpdateObsoleto= (idmandril, callback) => {
+    db.query(`UPDATE mandril_info SET mandril_activo="Obsoleto" WHERE mandril_id='${idmandril}'`, function (err, result, fields) {
         if (err) {
             callback(err, null);
         } else {

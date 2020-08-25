@@ -15,12 +15,14 @@
                 <form method="POST">
 
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="submit" formaction="/liberar/liberar" class="btn btn-success"><span
-                                    class="icoWhite fas fa-check" data-toggle="tooltip" data-placement="left" title="Liberar"></span></button>
-                                   
-                            <button type="submit" formaction="/liberar/rechazar" class="btn btn-danger" data-toggle="tooltip" data-placement="right" title="Rechazar"><span
-                                    class="icoWhite fas fa-times"></span></button>
-                                   
+                                <button type="submit" formaction="/liberar/liberar" class="btn btn-success"><span
+                                                class="icoWhite fas fa-check" data-toggle="tooltip"
+                                                data-placement="left" title="Liberar"></span></button>
+
+                                <button type="submit" formaction="/liberar/rechazar" class="btn btn-danger"
+                                        data-toggle="tooltip" data-placement="right" title="Rechazar"><span
+                                                class="icoWhite fas fa-times"></span></button>
+
 
                         </div>
 
@@ -29,10 +31,10 @@
                         <input type="text" name="actividad" value="<%=actividad%>" hidden>
                         <input type="text" name="descripcion" value="<%=descripcion%>" hidden>
                         <input type="text" name="numeroplano" value="<%=numeroplano%>" hidden>
-                  
-                        
-                    </form>
-                    <%}%>
+
+
+                </form>
+                <%}%>
 
 
 
@@ -53,8 +55,9 @@
 
                         <div class="form-group">
                                 <label for="Descripcion">Comentario:</label>
-                                <textarea type="text" class="form-control " rows="6" name="comentario" required></textarea>
-                            </div>
+                                <textarea type="text" class="form-control " rows="6" name="comentario"
+                                        required></textarea>
+                        </div>
                         <div class="box-footer">
                                 <button id="btnguardar" type="submit" class="btn btn-primary"
                                         onclick="$('form').attr('action', '/reemplazar_plano');">Guardar</button>
@@ -63,100 +66,213 @@
                         <input type="text" name="idmandril" value="<%=idmandril%>" hidden>
                         <input type="text" name="areaplano" value="<%=areaplano%>" hidden>
                         <input type="text" name="tipo" value="<%=tipo%>" hidden>
-                
-                <%}%>
+
+                        <%}%>
         <br>
+
+
+
+
         <%if(tipo=='plano'){%>
-        <h4 class="box-title">Open pt.</h4>
+                                                <h4 class="box-title">Open pt.</h4>
 
-        <div class="row">
-                <div class="form-group col-lg-3">
-                        <label for="Titulo">Diametro Interno Minimo vs Plano: </label> <label id="msg"> </label>
-                        <input type="text" class="form-control" id="OpenDiametroMinimo" value="<%= data[0].ODiamMin %>"
-                name="OpenDiametroMinimo"
-                onkeyup="this.value = this.value.toUpperCase();" required  <% if(areaplano!='Tooling') {%> readonly <% } %>  >
-        </div>
-        <div class="form-group col-lg-3">
-                <label for="Titulo">Diametro Interno Maximo vs Plano: </label> <label id="msg"> </label>
-                <input type="text" class="form-control" id="OpenDiametroMaximo" value="<%= data[0].ODiamMax %>"
-                        name="OpenDiametroMaximo" onkeyup="this.value = this.value.toUpperCase();" required <% if(areaplano!='Tooling') {%> readonly <% } %>     >
-        </div>
-        <div class="form-group col-lg-3">
-                <label for="Titulo">Espesor mang. Minimo vs Plano: </label> <label id="msg"> </label>
-                <input type="text" class="form-control" id="OpenEspesorMinimo" value="<%= data[0].OEspMin %>"
-                        name="OpenEspesorMinimo" onkeyup="this.value = this.value.toUpperCase();" required  <% if(areaplano!='Tooling') {%> readonly <% } %> >
-        </div>
-        <div class="form-group col-lg-3">
-                <label for="Titulo">Espesor mang. Maximo vs Plano: </label> <label id="msg"> </label>
-                <input type="text" class="form-control" id="OpenEspesorMaximo" value="<%= data[0].OEspMax %>"
-                        name="OpenEspesorMaximo" onkeyup="this.value = this.value.toUpperCase();" required  <% if(areaplano!='Tooling') {%> readonly <% } %> >
-        </div>
+                                                <div class="row">
+                                                        <div class="form-group col-lg-3">
+                                                                <label for="Titulo">Diametro Interno Minimo vs Plano:
+                                                                </label>
+                                                                <label id="msg"> </label>
+                                                                <input type="text" class="form-control"
+                                                                        id="OpenDiametroMinimo"
+                                                                        value="<%= data[0].ODiamMin %>"
+                                                                        name="OpenDiametroMinimo"
+                                                                        onkeyup="this.value = this.value.toUpperCase();"
+                                                                        required <% if(areaplano!='Tooling') {%>
+                                                                        readonly <% } %>>
+                                                        </div>
+                                                        <div class="form-group col-lg-3">
+                                                                <label for="Titulo">Diametro Interno Maximo vs Plano:
+                                                                </label>
+                                                                <label id="msg"> </label>
+                                                                <input type="text" class="form-control"
+                                                                        id="OpenDiametroMaximo"
+                                                                        value="<%= data[0].ODiamMax %>"
+                                                                        name="OpenDiametroMaximo"
+                                                                        onkeyup="this.value = this.value.toUpperCase();"
+                                                                        required <% if(areaplano!='Tooling') {%>
+                                                                        readonly <% } %>>
+                                                        </div>
+                                                        <div class="form-group col-lg-3">
+                                                                <label for="Titulo">Espesor mang. Minimo vs Plano:
+                                                                </label>
+                                                                <label id="msg"> </label>
+                                                                <input type="text" class="form-control"
+                                                                        id="OpenEspesorMinimo"
+                                                                        value="<%= data[0].OEspMin %>"
+                                                                        name="OpenEspesorMinimo"
+                                                                        onkeyup="this.value = this.value.toUpperCase();"
+                                                                        required <% if(areaplano!='Tooling') {%>
+                                                                        readonly <% } %>>
+                                                        </div>
+                                                        <div class="form-group col-lg-3">
+                                                                <label for="Titulo">Espesor mang. Maximo vs Plano:
+                                                                </label>
+                                                                <label id="msg"> </label>
+                                                                <input type="text" class="form-control"
+                                                                        id="OpenEspesorMaximo"
+                                                                        value="<%= data[0].OEspMax %>"
+                                                                        name="OpenEspesorMaximo"
+                                                                        onkeyup="this.value = this.value.toUpperCase();"
+                                                                        required <% if(areaplano!='Tooling') {%>
+                                                                        readonly <% } %>>
+                                                        </div>
 
-</div>
-
-
-<h4 class="box-title">Intermedio pt.</h4>
-
-
-<div class="row">
-        <div class="form-group col-lg-3">
-                <label for="Titulo">Diametro Interno Minimo vs Plano: </label> <label id="msg"> </label>
-                <input type="text" class="form-control" id="InterDiametroMinimo" value="<%= data[0].IDiamMin%>"
-                        name="InterDiametroMinimo" onkeyup="this.value = this.value.toUpperCase();" required  <% if(areaplano!='Tooling') {%> readonly <% } %> >
-        </div>
-        <div class="form-group col-lg-3">
-                <label for="Titulo">Diametro Interno Maximo vs Plano: </label> <label id="msg"> </label>
-                <input type="text" class="form-control" id="InterDiametroMaximo" value="<%= data[0].IDiamMax%>"
-                        name="InterDiametroMaximo" onkeyup="this.value = this.value.toUpperCase();" required  <% if(areaplano!='Tooling') {%> readonly <% } %> > 
-        </div>
-
-
-</div>
-
-<h4 class="box-title">Boss pt.</h4>
-
-
-<div class="row">
-        <div class="form-group col-lg-3">
-                <label for="Titulo">Diametro Interno Minimo vs Plano: </label> <label id="msg"> </label>
-                <input type="text" class="form-control" id="BossDiametroMinimo" value="<%= data[0].BDiamMin%>"
-                        name="BossDiametroMinimo" onkeyup="this.value = this.value.toUpperCase();" required  <% if(areaplano!='Tooling') {%> readonly <% } %> >
-        </div>
-        <div class="form-group col-lg-3">
-                <label for="Titulo">Diametro Interno Maximo vs Plano: </label> <label id="msg"> </label>
-                <input type="text" class="form-control" id="BossDiametroMaximo" value="<%= data[0].BDiamMax%>"
-                        name="BossDiametroMaximo" onkeyup="this.value = this.value.toUpperCase();" required  <% if(areaplano!='Tooling') {%> readonly <% } %> >
-        </div>
-        <div class="form-group col-lg-3">
-                <label for="Titulo">Espesor mang. Minimo vs Plano: </label> <label id="msg"> </label>
-                <input type="text" class="form-control" id="BossEspesorMinimo" value="<%= data[0].BEspMin%>"
-                        name="BossEspesorMinimo" onkeyup="this.value = this.value.toUpperCase();" required  <% if(areaplano!='Tooling') {%> readonly <% } %> >
-        </div>
-        <div class="form-group col-lg-3">
-                <label for="Titulo">Espesor mang. Maximo vs Plano: </label> <label id="msg"> </label>
-                <input type="text" class="form-control" id="BossEspesorMaximo" value="<%= data[0].BEspMax%>"
-                        name="BossEspesorMaximo" onkeyup="this.value = this.value.toUpperCase();" required  <% if(areaplano!='Tooling') {%> readonly <% } %> >
-        </div>
-
-</div>
-</form>
-<%}%>
+                                                </div>
 
 
+                                                <h4 class="box-title">Intermedio pt.</h4>
+
+
+                                                <div class="row">
+                                                        <div class="form-group col-lg-3">
+                                                                <label for="Titulo">Diametro Interno Minimo vs Plano:
+                                                                </label>
+                                                                <label id="msg"> </label>
+                                                                <input type="text" class="form-control"
+                                                                        id="InterDiametroMinimo"
+                                                                        value="<%= data[0].IDiamMin%>"
+                                                                        name="InterDiametroMinimo"
+                                                                        onkeyup="this.value = this.value.toUpperCase();"
+                                                                        required <% if(areaplano!='Tooling') {%>
+                                                                        readonly <% } %>>
+                                                        </div>
+                                                        <div class="form-group col-lg-3">
+                                                                <label for="Titulo">Diametro Interno Maximo vs Plano:
+                                                                </label>
+                                                                <label id="msg"> </label>
+                                                                <input type="text" class="form-control"
+                                                                        id="InterDiametroMaximo"
+                                                                        value="<%= data[0].IDiamMax%>"
+                                                                        name="InterDiametroMaximo"
+                                                                        onkeyup="this.value = this.value.toUpperCase();"
+                                                                        required <% if(areaplano!='Tooling') {%>
+                                                                        readonly <% } %>>
+                                                        </div>
+
+
+                                                </div>
+
+                                                <h4 class="box-title">Boss pt.</h4>
+
+
+                                                <div class="row">
+                                                        <div class="form-group col-lg-3">
+                                                                <label for="Titulo">Diametro Interno Minimo vs Plano:
+                                                                </label>
+                                                                <label id="msg"> </label>
+                                                                <input type="text" class="form-control"
+                                                                        id="BossDiametroMinimo"
+                                                                        value="<%= data[0].BDiamMin%>"
+                                                                        name="BossDiametroMinimo"
+                                                                        onkeyup="this.value = this.value.toUpperCase();"
+                                                                        required <% if(areaplano!='Tooling') {%>
+                                                                        readonly <% } %>>
+                                                        </div>
+                                                        <div class="form-group col-lg-3">
+                                                                <label for="Titulo">Diametro Interno Maximo vs Plano:
+                                                                </label>
+                                                                <label id="msg"> </label>
+                                                                <input type="text" class="form-control"
+                                                                        id="BossDiametroMaximo"
+                                                                        value="<%= data[0].BDiamMax%>"
+                                                                        name="BossDiametroMaximo"
+                                                                        onkeyup="this.value = this.value.toUpperCase();"
+                                                                        required <% if(areaplano!='Tooling') {%>
+                                                                        readonly <% } %>>
+                                                        </div>
+                                                        <div class="form-group col-lg-3">
+                                                                <label for="Titulo">Espesor mang. Minimo vs Plano:
+                                                                </label>
+                                                                <label id="msg"> </label>
+                                                                <input type="text" class="form-control"
+                                                                        id="BossEspesorMinimo"
+                                                                        value="<%= data[0].BEspMin%>"
+                                                                        name="BossEspesorMinimo"
+                                                                        onkeyup="this.value = this.value.toUpperCase();"
+                                                                        required <% if(areaplano!='Tooling') {%>
+                                                                        readonly <% } %>>
+                                                        </div>
+                                                        <div class="form-group col-lg-3">
+                                                                <label for="Titulo">Espesor mang. Maximo vs Plano:
+                                                                </label>
+                                                                <label id="msg"> </label>
+                                                                <input type="text" class="form-control"
+                                                                        id="BossEspesorMaximo"
+                                                                        value="<%= data[0].BEspMax%>"
+                                                                        name="BossEspesorMaximo"
+                                                                        onkeyup="this.value = this.value.toUpperCase();"
+                                                                        required <% if(areaplano!='Tooling') {%>
+                                                                        readonly <% } %>>
+                                                        </div>
+
+                                                </div>
+                                        </form>
+                                        <%}%>
+
+<br>
+                                        <%if(areaplano2=='ToolingObsoleto'){%>
+                                                <div>
+                                                        <div class="col-lg-11 text-right">
+                                                                <form action="/obsoleto" method="POST" enctype="multipart/form-data"
+                                                 
+                        
+                                                                        <div class="box-footer">
+                                                                                <button id="btnguardar" type="submit" class="btn btn-danger"
+                                                                                        onclick="$('form').attr('action', '/obsoleto');">Cambiar
+                                                                                        a Obsoleto</button>
+                                                                        </div>
+                                                             
+                                                                        <input type="text" name="idmandrilObsoleto" value="<%=idmandril%>" hidden>
+                                                                 
+                                                                        
+                                                        </div>
+                        
+                                                 </div>
+                                        <%}%>
+                        
+                                <br>
+
+                                <h4 class="box-title">Plano</h4>
 <div class="row animated bounceInDown slow cdelay-1">
         <div class="col-2"></div>
         <div class="col-lg-12 text-center">
-                <iframe id="PDF" title="PDF" src="<%=idplano%>.pdf" frameborder="1" scrolling="auto" height="800"
-                        width="100%"></iframe>
-                        <!-- <iframe id="PDF" title="PDF" src="../<%=idplano%>.pdf" frameborder="1" scrolling="auto" height="800"
-                                width="100%"></iframe> -->
+                <!-- <iframe id="PDF" title="PDF" src="<%=idplano%>.pdf" frameborder="1" scrolling="auto" height="800"
+                                        width="100%"></iframe> -->
+                                        <iframe id="PDF" title="PDF" src="../<%=idplano%>.pdf" frameborder="1" scrolling="auto" height="800"
+                                width="100%"></iframe>
+                                </div>
+                                <div class="col-2"></div>
+                        </div>
+
+                        <br>
+                        <h4 class="box-title">CMM</h4>
+                        <div class="row animated bounceInDown slow cdelay-1">
+                                <div class="col-2"></div>
+                                <div class="col-lg-12 text-center">
+                                        <iframe id="PDF" title="PDF" src="../<%=idmandrilcmm%>.pdf" frameborder="1"
+                                                scrolling="auto" height="800" width="100%"></iframe>
+                                        <!-- <iframe id="PDF" title="PDF" src="../<%=idplano%>.pdf" frameborder="1" scrolling="auto" height="800"
+                                        width="100%"></iframe> -->
+                                </div>
+                                <div class="col-2"></div>
+                        </div>
+
+
+
         </div>
-        <div class="col-2"></div>
-</div iv>
 
 
 
-</div>
+
 </div>
 </div>
 
