@@ -1038,6 +1038,8 @@ controller.plano_POST = (req, res) => {
         if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling') {
             areaplano2 = 'ToolingObsoleto'
             break;
+        }else{
+            areaplano2 = 'Otro'
         }
     }
 
