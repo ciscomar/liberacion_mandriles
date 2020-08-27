@@ -57,7 +57,31 @@
                 </div>
                 <% }%>
 
-                <% if((data.actividad == 7 || data.actividad == 4 ) && accion == 'liberar'){%>
+                <% if((data.actividad == 7 ) && accion == 'liberar'){%>
+                    <div class="row">
+                <div class="form-group col-lg-6" id='divplat'>
+                    <label for="Titulo">Consecutivos:</label>
+                    <select class="form-control" name="selectConsecutivo" id="selectConsecutivo" required>
+                        <option value="" selected>Seleccionar</option>
+                        <% for (var i = 0; i < data2.length; i++) { %>
+                        <option><%= data2[i].mandril_consec %></option>
+                        <% } %>
+
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label for="Titulo">Consecutivos Seleccionados:</label>
+                    <input type="text" class="form-control" id="consecutivosI" value="" name="consecutivosI" readonly>
+                </div>
+
+
+                
+            </div>
+                <% }%>
+
+
+                <% if((data.actividad == 4 ) && accion == 'liberar'){%>
                     <div class="row">
                 <div class="form-group col-lg-6" id='divplat'>
                     <label for="Titulo">Consecutivos:</label>
