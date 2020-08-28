@@ -198,7 +198,7 @@ funcion.controllerTablaStatusTooling = (callback) => {
 funcion.controllerTablaStatusProcesos = (callback) => {
     db.query(`SELECT * FROM mandril_info, mandril_actividades
     WHERE ( mandril_info.mandril_status = mandril_actividades.activ_seq)
-    AND (mandril_status = 5 ||  mandril_status = 11 || mandril_status = 9 ) AND mandril_activo="Activo"`, function (err, result, fields) {
+    AND (mandril_status = 5 && mandril_tipo !="Prototipo" ||  mandril_status = 11 && mandril_tipo !="Prototipo" || mandril_status = 9 && mandril_tipo !="Prototipo" ) AND mandril_activo="Activo"`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {
@@ -212,7 +212,7 @@ funcion.controllerTablaStatusProcesos = (callback) => {
 funcion.controllerTablaStatusProcesos_Extrusion = (callback) => {
     db.query(`SELECT * FROM mandril_info, mandril_actividades
     WHERE ( mandril_info.mandril_status = mandril_actividades.activ_seq)
-    AND (mandril_status = 10 ) AND mandril_activo="Activo"`, function (err, result, fields) {
+    AND (mandril_status = 10 && mandril_tipo !="Prototipo" ) AND mandril_activo="Activo"`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {

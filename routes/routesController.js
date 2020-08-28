@@ -22,7 +22,7 @@ controller.crear_mandril_GET = (req, res) => {
     let user = req.connection.user
 
     for (let i = 0; i < req.connection.userGroups.length; i++) {
-        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling') {
+        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling' || 'BUILTIN\Administrators') {
             access = true;
             break;
         }
@@ -193,9 +193,10 @@ controller.status_mandriles_GET = (req, res) => {
 
 
     for (let i = 0; i < req.connection.userGroups.length; i++) {
+        console.log(req.connection.userGroups[i].toString())
 
 
-        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Lanzamientos') {
+        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Lanzamientos' || 'BUILTIN\Administrators'  ) {
             access = true;
             area = 1;
             areastring = 'Lanzamientos'
