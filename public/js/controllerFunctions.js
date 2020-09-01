@@ -803,7 +803,7 @@ funcion.FechaLiberacion= (id,consec, callback) => {
     db.query(`SELECT hist_fecha
     FROM mandril_historial
     WHERE hist_mandril='${id}' AND hist_consec='${consec}'
-    AND hist_activ=8 AND hist_status='Actividad Liberada' 
+    AND hist_activ=10 AND hist_status='Actividad Liberada' 
     ORDER BY hist_id DESC LIMIT 1`, function (err, result, fields) {
         if (err) {
             callback(err, null);

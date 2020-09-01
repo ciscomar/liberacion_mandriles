@@ -22,7 +22,7 @@ controller.crear_mandril_GET = (req, res) => {
     let user = req.connection.user
 
     for (let i = 0; i < req.connection.userGroups.length; i++) {
-        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling' || 'BUILTIN\Administrators') {
+        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling') {
             access = true;
             break;
         }
@@ -193,10 +193,10 @@ controller.status_mandriles_GET = (req, res) => {
 
 
     for (let i = 0; i < req.connection.userGroups.length; i++) {
-        console.log(req.connection.userGroups[i].toString())
+       
+        
 
-
-        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Lanzamientos' || 'BUILTIN\Administrators'  ) {
+        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Lanzamientos' ) {
             access = true;
             area = 1;
             areastring = 'Lanzamientos'
@@ -220,7 +220,7 @@ controller.status_mandriles_GET = (req, res) => {
                         areastring = 'Procesos Extrusion'
                         break;
                     } else
-                        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Calidad') {
+                        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Calidad'  ) {
                             access = true;
                             area = 5;
                             areastring = 'Calidad'
@@ -330,12 +330,13 @@ controller.liberar_POST = (req, res) => {
     username = user.substring(4)
     descripcion = req.body.descripcion;
     numeroplano = req.body.numeroplano
+    mandriltipo= req.body.mandriltipo
 
     funcion.selectAllLiberar(id, actividad, numeroplano, (err, result) => {
         if (err) throw err;
 
         res.render('liberar.ejs', {
-            user: username, data: { id, actividad, consecutivo, descripcion, numeroplano }, accion: accion, data2: result
+            user: username, data: { id, actividad, consecutivo, descripcion, numeroplano, mandriltipo }, accion: accion, data2: result
         });
     });
 
@@ -353,7 +354,14 @@ controller.guardar_liberar_POST = (req, res) => {
     comentario = req.body.comentario;
     status2 = 'Actividad Liberada'
     actividadNumber = parseInt(actividad)
-    nextActividad = actividadNumber + 1
+    mandriltipo= req.body.mandriltipo
+
+    if(mandriltipo="Prototipo" && actividadNumber== 6){
+        nextActividad = actividadNumber + 3
+    }else{
+        nextActividad = actividadNumber + 1
+    }
+    
     color2 = 'success'
     numeroplano = req.body.numeroplano
 
@@ -1073,7 +1081,7 @@ controller.reemplazar_plano_POST = (req, res) => {
     let comentario = req.body.comentario
 
     areaplano = req.body.areaplano;
-console.log(idmandril);
+
     mandril_id = idmandril.substring(0, idmandril.indexOf("-"));
     mandril_consec = idmandril.substring(idmandril.lastIndexOf("-") + 1)
 
