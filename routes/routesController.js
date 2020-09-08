@@ -193,10 +193,10 @@ controller.status_mandriles_GET = (req, res) => {
 
 
     for (let i = 0; i < req.connection.userGroups.length; i++) {
-       
-        
 
-        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Lanzamientos' ) {
+
+
+        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Lanzamientos') {
             access = true;
             area = 1;
             areastring = 'Lanzamientos'
@@ -220,7 +220,7 @@ controller.status_mandriles_GET = (req, res) => {
                         areastring = 'Procesos Extrusion'
                         break;
                     } else
-                        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Calidad'  ) {
+                        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Calidad') {
                             access = true;
                             area = 5;
                             areastring = 'Calidad'
@@ -330,7 +330,7 @@ controller.liberar_POST = (req, res) => {
     username = user.substring(4)
     descripcion = req.body.descripcion;
     numeroplano = req.body.numeroplano
-    mandriltipo= req.body.mandriltipo
+    mandriltipo = req.body.mandriltipo
 
     funcion.selectAllLiberar(id, actividad, numeroplano, (err, result) => {
         if (err) throw err;
@@ -354,14 +354,14 @@ controller.guardar_liberar_POST = (req, res) => {
     comentario = req.body.comentario;
     status2 = 'Actividad Liberada'
     actividadNumber = parseInt(actividad)
-    mandriltipo= req.body.mandriltipo
+    mandriltipo = req.body.mandriltipo
 
-    if(mandriltipo="Prototipo" && actividadNumber== 6){
+    if (mandriltipo = "Prototipo" && actividadNumber == 6) {
         nextActividad = actividadNumber + 3
-    }else{
+    } else {
         nextActividad = actividadNumber + 1
     }
-    
+
     color2 = 'success'
     numeroplano = req.body.numeroplano
 
@@ -425,10 +425,14 @@ controller.guardar_liberar_POST = (req, res) => {
     }
     if (lvulca != undefined) {
 
-        funcion.controllerUpdateInfo(mandril_id, mandril_consec, lvulca, "lvulca", (err, resu) => {
+        funcion.selectAllLiberar(mandril_id, actividad, numeroplano, (err, allMandriles) => {
             if (err) throw err;
+            for (let i = 0; i < allMandriles.length; i++) {
+                funcion.controllerUpdateInfo(mandril_id, allMandriles[i].mandril_consec, lvulca, "lvulca", (err, resu) => {
+                    if (err) throw err;
+                });
+            }
         });
-
     }
 
     if (IDE != undefined) {
@@ -483,7 +487,7 @@ controller.guardar_liberar_POST = (req, res) => {
 
 
     //<!--08/04/2020-->liberar todos mandriles iguales en lanzamientos en misma actividad
-    if (actividad == 3 || actividad == 10 || actividad == 2) {
+    if (actividad == 3 || actividad == 10 || actividad == 2 || actividad == 9) {
 
         funcion.selectAllLiberar(mandril_id, actividad, numeroplano, (err, allMandriles) => {
             if (err) throw err;
@@ -532,7 +536,7 @@ controller.guardar_liberar_POST = (req, res) => {
                 numcmm++;
 
                 let fileUploader = req.files.fileUploader;
-                fileUploader.mv('D:/DEL/liberacion_mandriles/' + 'C' + mandril_id + '-' +numcmm + '.pdf', function (err) {
+                fileUploader.mv('D:/DEL/liberacion_mandriles/' + 'C' + mandril_id + '-' + numcmm + '.pdf', function (err) {
                     //fileUploader.mv('C:/test/' + 'C' + mandril_id + '-' +numcmm + '.pdf', function (err) {
                     if (err)
                         return res.status(500).send(err);
@@ -544,7 +548,7 @@ controller.guardar_liberar_POST = (req, res) => {
 
                     funcion.controllerUpdateCmm(mandril_id, allconsecutivos[i], numcmm, (err, result3) => {
                         if (err) throw err;
-    
+
                     });
 
                 }
@@ -1047,7 +1051,7 @@ controller.plano_POST = (req, res) => {
         if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling') {
             areaplano2 = 'ToolingObsoleto'
             break;
-        }else{
+        } else {
             areaplano2 = 'Otro'
         }
     }
