@@ -193,7 +193,7 @@ controller.status_mandriles_GET = (req, res) => {
 
 
     for (let i = 0; i < req.connection.userGroups.length; i++) {
-        console.log(req.connection.userGroups[i].toString());
+        
 
 
         if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Lanzamientos') {
