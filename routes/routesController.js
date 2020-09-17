@@ -193,7 +193,7 @@ controller.status_mandriles_GET = (req, res) => {
 
 
     for (let i = 0; i < req.connection.userGroups.length; i++) {
-
+        console.log(req.connection.userGroups[i].toString());
 
 
         if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Lanzamientos') {
@@ -356,7 +356,7 @@ controller.guardar_liberar_POST = (req, res) => {
     actividadNumber = parseInt(actividad)
     mandriltipo = req.body.mandriltipo
 
-    if (mandriltipo = "Prototipo" && actividadNumber == 6) {
+    if (mandriltipo == "Prototipo" && actividadNumber == 6) {
         nextActividad = actividadNumber + 3
     } else {
         nextActividad = actividadNumber + 1
