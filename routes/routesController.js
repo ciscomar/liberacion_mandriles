@@ -1207,7 +1207,7 @@ controller.mandril_info_POST = (req, res) => {
 
 
 
-    if (mandrilStatus > 9) {
+    if (mandrilStatus > 10) {
         funcion.SelectInfoMandril(mandril_id, mandril_consec, (err, result) => {
             if (err) throw err;
             funcion.SelectInfoReporte(mandril_id, mandril_consec, (err, result2) => {
