@@ -449,12 +449,7 @@ controller.guardar_liberar_POST = (req, res) => {
             if (err) throw err;
         });
     }
-    if (fix_muescas != undefined) {
-
-        funcion.controllerUpdateReporteCalidadEnsamble(mandril_id, mandril_consec, fix_muescas, fix_tejido, fix_longitud, fix_ruta, fix_tapa, fix_ensamblaje, fix_goma, fix_verificar, (err, resu) => {
-            if (err) throw err;
-        });
-    }
+    
     // if (espesor != undefined) {
 
     //     funcion.controllerUpdateInfo(mandril_id, mandril_consec, espesor, "espesor", (err, resu) => {
@@ -507,7 +502,7 @@ controller.guardar_liberar_POST = (req, res) => {
         });
 
 
-    } else if (actividad == 7 || actividad == 4) {
+    } else if (actividad == 7 || actividad == 4 || actividad == 8) {
 
         consecutivost = req.body.consecutivosI
         allconsecutivos = consecutivost.split(',')
@@ -524,9 +519,6 @@ controller.guardar_liberar_POST = (req, res) => {
             });
 
         }
-
-
-
 
         let fileExist = req.files
 
@@ -557,6 +549,18 @@ controller.guardar_liberar_POST = (req, res) => {
             })
         }
 
+
+
+        if (fix_muescas != undefined) {
+            
+            for (let i = 0; i < allconsecutivos.length; i++) {
+
+                funcion.controllerUpdateReporteCalidadEnsamble(mandril_id,  allconsecutivos[i], fix_muescas, fix_tejido, fix_longitud, fix_ruta, fix_tapa, fix_ensamblaje, fix_goma, fix_verificar, (err, resu) => {
+                    if (err) throw err;
+                });
+            }
+        }
+        
 
 
 

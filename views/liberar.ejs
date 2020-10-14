@@ -224,6 +224,24 @@
 
                     <% if(data.actividad == 8 && accion == 'liberar'){%>
                         <div class="row">
+
+                            <div class="form-group col-lg-6" id='divplat'>
+                                <label for="Titulo">Consecutivos:</label>
+                                <select class="form-control" name="selectConsecutivo" id="selectConsecutivo" required>
+                                    <option value="" selected>Seleccionar</option>
+                                    <% for (var i = 0; i < data2.length; i++) { %>
+                                    <option><%= data2[i].mandril_consec %></option>
+                                    <% } %>
+            
+                                </select>
+                            </div>
+            
+                            <div class="form-group col-lg-6">
+                                <label for="Titulo">Consecutivos Seleccionados:</label>
+                                <input type="text" class="form-control" id="consecutivosI" value="" name="consecutivosI" readonly>
+                            </div>
+
+
                             
                             <div class="form-group col-lg-6" id='divplat'>
                                 <label for="Titulo">Muescas de acuerdo a plano</label>
@@ -289,6 +307,7 @@
                                     <option>N/A</option>
                                 </select>
                             </div>
+                            <br>
 
                             <!-- <div class="form-group col-lg-6">
                                 <div class="form-check">
