@@ -859,6 +859,59 @@ funcion.UpdateObsoleto= (idmandril, callback) => {
 }
 
 
+
+funcion.consecutivoHistorial= (mandril,nuevo_consec,viejo_consec, callback) => {
+    db.query(`UPDATE mandril_historial SET hist_consec=${nuevo_consec} WHERE hist_mandril='${mandril}' AND hist_consec=${viejo_consec}`, function (err, result, fields) {
+        if (err) {
+            callback(err, null);
+        } else {
+
+          
+            callback(null, result);
+        }
+    })
+}
+
+funcion.consecutivoInfo= (mandril,nuevo_consec,viejo_consec, callback) => {
+    db.query(`UPDATE mandril_info SET mandril_consec=${nuevo_consec} WHERE mandril_id='${mandril}' AND mandril_consec=${viejo_consec}`, function (err, result, fields) {
+        if (err) {
+            callback(err, null);
+        } else {
+
+          
+            callback(null, result);
+        }
+    })
+}
+funcion.consecutivoPlano= (mandril,nuevo_consec,viejo_consec, callback) => {
+    db.query(`UPDATE mandril_plano SET mandril_consec=${nuevo_consec} WHERE mandril_id='${mandril}' AND mandril_consec=${viejo_consec}`, function (err, result, fields) {
+        if (err) {
+            callback(err, null);
+        } else {
+
+          
+            callback(null, result);
+        }
+    })
+}
+
+funcion.consecutivoReporte= (mandril,nuevo_consec,viejo_consec, callback) => {
+    db.query(`UPDATE mandril_reporte SET mandril_consec=${nuevo_consec} WHERE mandril_id='${mandril}' AND mandril_consec=${viejo_consec}`, function (err, result, fields) {
+        if (err) {
+            callback(err, null);
+        } else {
+
+          
+            callback(null, result);
+        }
+    })
+}
+
+
+
+
+
+
 funcion.sendNotificacion = (actividad) => {
     let vencidos = [];
 
@@ -943,6 +996,9 @@ schedule.scheduleJob(rule, function () {
 
     })
 });
+
+
+
 
 
 

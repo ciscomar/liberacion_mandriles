@@ -44,6 +44,46 @@
 
                 <br>
                 <%if(areaplano=='Tooling'){%>
+
+
+                        <form action="/" method="POST" enctype="multipart/form-data"
+                        class="animated bounceInDown">
+                                <h3 class="box-title">Cambiar Consecutivo</h3>
+                                <div class="row">
+                                        
+                                
+                                <div class="form-group col-lg-3">
+                                        <label for="Titulo">Mandril:</label>
+                                      
+                                                <input type="text" class="form-control" id="consec_mandril" value="<%=data[0].mandril_id%>"name="consec_mandril" readonly>                                      
+                                        
+                                </div>
+                                <div class="form-group col-lg-3">
+                                        <label for="Titulo">Consecutivo:</label>
+                                        <input type="text" class="form-control" id="nuevo_consec" value="<%=consecutivo%>"name="nuevo_consec">
+                                </div>
+
+                                
+                                <input type="text" class="form-control" id="viejo_consec" value="<%=consecutivo%>"name="viejo_consec" hidden>
+                        </div>
+                                <div class="box-footer">
+                                                                        
+                                       <button id="btnguardar" type="submit" class="btn btn-primary"
+                                                onclick="$('form').attr('action', '/cambiar_consecutivo');">Cambiar</button>
+                                </div>
+                         </form>
+
+
+                                <br>
+
+
+
+
+
+
+
+
+
                 <form action="/guardar_mandril" method="POST" enctype="multipart/form-data"
                         class="animated bounceInDown">
                         <h3 class="box-title">Reemplazar</h3>

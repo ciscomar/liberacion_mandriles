@@ -23,6 +23,7 @@ router.post('/mandril_info', routesController.mandril_info_POST);
 router.post('/historial_info', routesController.historial_info_POST);
 router.get('/consulta_mandril/:id', routesController.consulta_mandril_GET);
 router.post('/obsoleto', routesController.obsoleto_POST);
+router.post('/cambiar_consecutivo', routesController.cambiar_consecutivo_POST);
 
 
 router.get('*', (req, res) => {

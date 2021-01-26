@@ -193,7 +193,7 @@ controller.status_mandriles_GET = (req, res) => {
 
 
     for (let i = 0; i < req.connection.userGroups.length; i++) {
-        
+
 
 
         if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Lanzamientos') {
@@ -449,7 +449,7 @@ controller.guardar_liberar_POST = (req, res) => {
             if (err) throw err;
         });
     }
-    
+
     // if (espesor != undefined) {
 
     //     funcion.controllerUpdateInfo(mandril_id, mandril_consec, espesor, "espesor", (err, resu) => {
@@ -552,15 +552,15 @@ controller.guardar_liberar_POST = (req, res) => {
 
 
         if (fix_muescas != undefined) {
-            
+
             for (let i = 0; i < allconsecutivos.length; i++) {
 
-                funcion.controllerUpdateReporteCalidadEnsamble(mandril_id,  allconsecutivos[i], fix_muescas, fix_tejido, fix_longitud, fix_ruta, fix_tapa, fix_ensamblaje, fix_goma, fix_verificar, (err, resu) => {
+                funcion.controllerUpdateReporteCalidadEnsamble(mandril_id, allconsecutivos[i], fix_muescas, fix_tejido, fix_longitud, fix_ruta, fix_tapa, fix_ensamblaje, fix_goma, fix_verificar, (err, resu) => {
                     if (err) throw err;
                 });
             }
         }
-        
+
 
 
 
@@ -1340,6 +1340,39 @@ controller.obsoleto_POST = (req, res) => {
             });
         });
     });
+
+
+}
+
+
+controller.cambiar_consecutivo_POST = (req, res) => {
+    let user = req.connection.user
+    mandril = req.body.consec_mandril
+    nuevo_consec = req.body.nuevo_consec
+    viejo_consec = req.body.viejo_consec
+
+
+    funcion.consecutivoHistorial(mandril, nuevo_consec, viejo_consec, (err, result) => {
+        if (err) throw err;
+        funcion.consecutivoInfo(mandril, nuevo_consec, viejo_consec, (err, result) => {
+            if (err) throw err;
+            funcion.consecutivoPlano(mandril, nuevo_consec, viejo_consec, (err, result) => {
+                if (err) throw err;
+                funcion.consecutivoReporte(mandril, nuevo_consec, viejo_consec, (err, result) => {
+                    if (err) throw err;
+
+                    funcion.controllerTablaStatusTooling((err, result2) => {
+                        if (err) throw err;
+        
+                        res.render('status_mandriles.ejs', {
+                            data: result2, user: user, areastring: "Tooling"
+                        });
+                    });
+                });
+            });
+        });
+    });
+
 
 
 }
