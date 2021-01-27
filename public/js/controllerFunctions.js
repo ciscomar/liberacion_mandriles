@@ -78,10 +78,10 @@ funcion.controllerPlataformas = (callback) => {
 
 }
 
-funcion.controllerInsertMandril = (id,consecutivo, numparte, plat,cliente,motivo,tipo, prioridad, plano,revision,  callback) => {
+funcion.controllerInsertMandril = (id,consecutivo, numparte, plat,cliente,motivo,tipo, prioridad, plano,revision,hose, proveedor,  callback) => {
     db.query(`
-    INSERT INTO mandril_info (mandril_id,mandril_consec, mandril_numparte, mandril_plat,mandril_cliente,mandril_motivo,mandril_tipo, mandril_fam, mandril_lgreen, mandril_lvulca,mandril_ufecha, mandril_status, mandril_estado, mandril_prioridad, mandril_plano, mandril_revision, mandril_activo, mandril_cmm)
-    VALUES( '${id}', ${consecutivo}, '${numparte}', '${plat}','${cliente}', '${motivo}', '${tipo}' ,'', '','', NOW(), '2','Proceso','${prioridad}', ${plano},'${revision}', 'Activo',0)`, function (err, result, fields) {
+    INSERT INTO mandril_info (mandril_id,mandril_consec, mandril_numparte, mandril_plat,mandril_cliente,mandril_motivo,mandril_tipo, mandril_fam, mandril_lgreen, mandril_lvulca,mandril_ufecha, mandril_status, mandril_estado, mandril_prioridad, mandril_plano, mandril_revision, mandril_activo, mandril_cmm, mandril_hose, mandril_proveedor)
+    VALUES( '${id}', ${consecutivo}, '${numparte}', '${plat}','${cliente}', '${motivo}', '${tipo}' ,'', '','', NOW(), '2','Proceso','${prioridad}', ${plano},'${revision}', 'Activo',0, '${hose}', '${proveedor}')`, function (err, result, fields) {
             if (err) {
                 callback(err, null);
             } else {

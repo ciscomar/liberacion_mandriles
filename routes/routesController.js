@@ -109,6 +109,8 @@ controller.guardar_mandril_POST = (req, res) => {
     planoRep = req.body.planoRep
 
 
+    hose_info= req.body.hose_info
+    proveedor_info= req.body.proveedor_info
 
 
     funcion.controllerLastPlano(id, (err, numplano) => {
@@ -142,7 +144,7 @@ controller.guardar_mandril_POST = (req, res) => {
 
         for (let i = 0; i < total; i++) {
 
-            funcion.controllerInsertMandril(id, consecutivo, parte, plataforma, cliente, motivo, tipo, prioridad, numplano, revision, (err, result2) => {
+            funcion.controllerInsertMandril(id, consecutivo, parte, plataforma, cliente, motivo, tipo, prioridad, numplano, revision,hose_info, proveedor_info, (err, result2) => {
                 if (err) throw err;
             });
 
