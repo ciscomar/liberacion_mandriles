@@ -768,6 +768,15 @@ controller.guardar_rechazar_POST = (req, res) => {
 
 controller.mandriles_GET = (req, res) => {
     let user = req.connection.user
+    let editconsec=""
+    //TODAY
+
+    for (let i = 0; i < req.connection.userGroups.length; i++) {
+        if (req.connection.userGroups[i].toString() == 'TFT\\TFT.DEL.PAGES_Mandriles_Tooling') {
+            editconsec = 'Tooling'
+            break;
+        } 
+    }
 
     funcion.controllerTablaMandriles((err, result2) => {
         if (err) throw err;
@@ -796,7 +805,7 @@ controller.mandriles_GET = (req, res) => {
                                     mandrilCalidad = result9[0].Calidad
 
                                     res.render('mandriles.ejs', {
-                                        user: user, data: result2, data2: { mandrilProceso, mandrilRechazado, mandrilLiberado }, data3: { mandrilLanzamientos, mandrilTooling, mandrilProcesos, mandrilCalidad }
+                                        user: user, data: result2, data2: { mandrilProceso, mandrilRechazado, mandrilLiberado }, data3: { mandrilLanzamientos, mandrilTooling, mandrilProcesos, mandrilCalidad },editconsec
                                     });
                                 });
                             });
@@ -1040,6 +1049,7 @@ controller.plano_POST = (req, res) => {
     idplano = req.body.idmandrilplano
     areaplano = req.body.areaplano
     tipo = req.body.tipo
+    editconsec=req.body.editconsec
 
     //<!--08/04/2020-->
     idmandrill = req.body.idmandrill
@@ -1072,7 +1082,7 @@ controller.plano_POST = (req, res) => {
 
 
         res.render('plano.ejs', {
-            user: user, idmandril, idplano, areaplano, data: result, tipo, idmandrill, consecutivo, actividad, descripcion, numeroplano, idmandrilcmm
+            user: user, idmandril, idplano, areaplano, data: result, tipo, idmandrill, consecutivo, actividad, descripcion, numeroplano, idmandrilcmm, editconsec
         });
     });
 
