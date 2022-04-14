@@ -28,7 +28,7 @@
     <div class="containerTable">
         <!-- /.box-header -->
         <div class="table table-responsive" id="table">
-            <table id="myTable" class="table table-bordered table-striped table-sm">
+            <table id="myTable2" class="table table-bordered table-striped table-sm" style="display:none">
                 <thead class="thead-dark">
 
                     <th><span class="icoSidebar fas fa-history"></span> Historial</th>
@@ -177,7 +177,15 @@
     window.onload = function () {
         $(".spinner-border").fadeOut("fast");
         $('.main').show('slow');
-    }
+             }
+
+    $('#myTable2').dataTable( {
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "order": [[ 0, "desc" ]]
+            
+          } )
+          $('#myTable2').show()
+
 </script>
 
 </div>
