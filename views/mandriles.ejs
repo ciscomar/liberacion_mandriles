@@ -24,6 +24,19 @@
     </div>
 
 </div>
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 text-center mt-2 mb-2">
+            <button class="btn btn-success" id="btnExcelDownloadCon"><span class="fas fa-file-excel 2x"></span> Excel</button>
+        </div>
+        <div class="col-4 text-center mt-2 mb-2"></div>
+
+      
+
+    </div>
+
+</div> -->
 <div class="table-responsive text-center">
     <div class="containerTable">
         <!-- /.box-header -->
@@ -179,12 +192,37 @@
         $('.main').show('slow');
              }
 
+//              btnExcelDownloadCon.addEventListener("click", () => {
+
+// $('#myTable2').button('0').trigger()
+
+// })
+
     $('#myTable2').dataTable( {
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-            "order": [[ 0, "desc" ]]
+            "order": [[ 0, "desc" ]],
+            dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel'
+        ]
+            // dom: 'Blfrtip',
+  
+            // buttons: [
+            //     {
+            //         extend: 'excelHtml5',
+            //         title: null,
+            //         filename: `Comedor`,
+            //         className: "d-none"
+            
+            //     }
+            
+            //         ]
+
+            
             
           } )
           $('#myTable2').show()
+
 
 </script>
 

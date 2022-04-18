@@ -34,13 +34,14 @@ $(document).ready(function () {
         title: null,
         filename: titulo
       },
+    ]
       // {
       //   text: 'My button',
       //   action: function ( e, dt, node, config ) {
       //       alert( 'Button activated' );
       //   }
       // }
-    ]
+    
   });
 });
 
