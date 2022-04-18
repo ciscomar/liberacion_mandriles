@@ -14,7 +14,7 @@
     "animate.css": "^3.7.2",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.2",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "datatables": "^1.10.18",
     "ejs": "^2.7.4",
     "express": "^4.17.1",
