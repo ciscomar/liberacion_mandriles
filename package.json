@@ -17,7 +17,7 @@
     "chart.js": "^2.9.3",
     "datatables": "^1.10.18",
     "ejs": "^2.7.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-fileupload": "^1.1.10",
     "express-mailer": "^0.3.1",
     "jquery": "^3.5.1",
