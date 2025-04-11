@@ -979,23 +979,23 @@ funcion.sendNotificacion = (actividad) => {
 
 
 //Enviar correos cada determinado tiempo
-var rule = new schedule.RecurrenceRule();
-rule.hour = 7;
-rule.minute = 0;
-rule.second = 0;
+// var rule = new schedule.RecurrenceRule();
+// rule.hour = 7;
+// rule.minute = 0;
+// rule.second = 0;
 
-schedule.scheduleJob(rule, function () {
+// schedule.scheduleJob(rule, function () {
 
 
-    db.query(`SELECT * FROM mandril_actividades`, function (err, actividad, fields) {
+//     db.query(`SELECT * FROM mandril_actividades`, function (err, actividad, fields) {
 
-        for (let i = 0; i < actividad.length; i++) {
+//         for (let i = 0; i < actividad.length; i++) {
 
-            funcion.sendNotificacion(actividad[i]);
-        }
+//             funcion.sendNotificacion(actividad[i]);
+//         }
 
-    })
-});
+//     })
+// });
 
 
 
