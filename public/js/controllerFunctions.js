@@ -997,6 +997,24 @@ schedule.scheduleJob(rule, function () {
     })
 });
 
+// Add this function to retrieve filtered activities (excluding first and last 3)
+funcion.controllerAllActividades = (callback) => {
+    db.query(`SELECT * FROM mandril_actividades ORDER BY activ_seq`, function (err, result, fields) {
+        if (err) {
+            return callback(err, null);
+        }
+        
+        // If we have results, filter out the first activity and last 3 activities
+        if (result && result.length > 4) {
+            // Remove first activity and last 3 activities
+            const filteredActivities = result.slice(1, result.length - 3);
+            return callback(null, filteredActivities);
+        }
+        
+        return callback(null, result);
+    });
+};
+
 
 
 

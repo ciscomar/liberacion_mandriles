@@ -1078,13 +1078,29 @@ controller.plano_POST = (req, res) => {
 
 
 
-    funcion.SelectInfoPlano(mandril_id, mandril_consec, (err, result) => {
+    funcion.controllerAllActividades((err, actividades) => {
         if (err) throw err;
+        
+        funcion.SelectInfoPlano(mandril_id, mandril_consec, (err, result) => {
+            if (err) throw err;
 
-
-
-        res.render('plano.ejs', {
-            user: user, idmandril, idplano, areaplano, data: result, tipo, idmandrill, consecutivo, actividad, descripcion, numeroplano, idmandrilcmm, editconsec
+            res.render('plano.ejs', {
+                user: user, 
+                idmandril, 
+                idplano, 
+                areaplano,
+                areaplano2, 
+                data: result, 
+                tipo,
+                idmandrill, 
+                consecutivo, 
+                actividad, 
+                descripcion, 
+                numeroplano, 
+                idmandrilcmm, 
+                editconsec,
+                actividades: actividades
+            });
         });
     });
 
@@ -1159,11 +1175,22 @@ controller.reemplazar_plano_POST = (req, res) => {
             funcion.UpdateCambioPlano(mandril_id, mandril_consec, (err, result) => {
                 if (err) throw err;
 
-                funcion.SelectInfoPlano(mandril_id, mandril_consec, (err, result) => {
+                funcion.controllerAllActividades((err, actividades) => {
                     if (err) throw err;
+                    
+                    funcion.SelectInfoPlano(mandril_id, mandril_consec, (err, result) => {
+                        if (err) throw err;
 
-                    res.render('plano.ejs', {
-                        user: user, idmandril, idplano, areaplano, data: result, tipo
+                        res.render('plano.ejs', {
+                            user: user, 
+                            idmandril, 
+                            idplano, 
+                            areaplano,
+                            areaplano2, 
+                            data: result, 
+                            tipo,
+                            actividades: actividades
+                        });
                     });
                 });
             });
@@ -1388,6 +1415,72 @@ controller.cambiar_consecutivo_POST = (req, res) => {
 
 
 }
+
+controller.regresar_POST = (req, res) => {
+    let user = req.connection.user
+    username = user.substring(4)
+    idmandril = req.body.idmandrilRegresar
+    actividadDestino = req.body.actividadDestino
+    
+    // Validate if actividadDestino is provided
+    if (!actividadDestino) {
+        return res.status(400).send('Debe seleccionar una actividad para regresar el mandril');
+    }
+    
+    mandril_id = idmandril.substring(0, idmandril.indexOf("-"));
+    mandril_consec = idmandril.substring(idmandril.lastIndexOf("-") + 1)
+    
+    // Add entry to historial
+    const comentario = "Mandril regresado a actividad anterior";
+    const status = "Actividad Regresada";
+    
+    funcion.controllerInsertMandrilHistorial(mandril_id, mandril_consec, username, actividadDestino, comentario, status, (err, result) => {
+        if (err) throw err;
+        
+        // Update mandril status to the selected activity
+        funcion.controllerUpdateMandrilStatus(mandril_id, mandril_consec, actividadDestino, "Proceso", (err, result) => {
+            if (err) throw err;
+            
+            // Redirect to mandriles page after successful update
+            funcion.controllerTablaMandriles((err, result2) => {
+                if (err) throw err;
+                funcion.controllerCountMandrilesAll('Proceso', "Proceso", (err, result3) => {
+                    if (err) throw err;
+                    funcion.controllerCountMandrilesAll('Liberado', "Liberado", (err, result4) => {
+                        if (err) throw err;
+                        funcion.controllerCountMandrilesAll('Rechazado', "Rechazado", (err, result5) => {
+                            if (err) throw err;
+                            funcion.controllerCountMandrilAreaL((err, result6) => {
+                                if (err) throw err;
+                                funcion.controllerCountMandrilAreaT((err, result7) => {
+                                    if (err) throw err;
+                                    funcion.controllerCountMandrilAreaPs((err, result8) => {
+                                        if (err) throw err;
+                                        funcion.controllerCountMandrilAreaC((err, result9) => {
+                                            if (err) throw err;
+
+                                            mandrilProceso = result3[0].Proceso
+                                            mandrilLiberado = result4[0].Liberado
+                                            mandrilRechazado = result5[0].Rechazado
+                                            mandrilLanzamientos = result6[0].Lanzamientos
+                                            mandrilTooling = result7[0].Tooling
+                                            mandrilProcesos = result8[0].Procesos
+                                            mandrilCalidad = result9[0].Calidad
+
+                                            res.render('mandriles.ejs', {
+                                                user: user, data: result2, data2: { mandrilProceso, mandrilRechazado, mandrilLiberado }, data3: { mandrilLanzamientos, mandrilTooling, mandrilProcesos, mandrilCalidad }
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+};
 
 
 
