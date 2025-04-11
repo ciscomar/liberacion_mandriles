@@ -257,22 +257,38 @@
 <br>
                                         <%if(areaplano2=='ToolingObsoleto'){%>
                                                 <div>
-                                                        <div class="col-lg-11 text-right">
-                                                                <form action="/obsoleto" method="POST" enctype="multipart/form-data"
-                                                 
-                        
-                                                                        <div class="box-footer">
-                                                                                <button id="btnguardar" type="submit" class="btn btn-danger"
+                                                        <div class="col-lg-11">
+                                                                <form action="/obsoleto" method="POST" enctype="multipart/form-data">
+                                                                        <!-- First row: Cambiar a Obsoleto button -->
+                                                                        <h5 class="mb-2 text-danger"><i class="fas fa-exclamation-triangle"></i> Marcar como Obsoleto</h5>
+                                                                        <div class="box-footer d-flex justify-content-start mb-4">
+                                                                                <button id="btnObsoleto" type="submit" class="btn btn-danger"
                                                                                         onclick="$('form').attr('action', '/obsoleto');">Cambiar
                                                                                         a Obsoleto</button>
                                                                         </div>
-                                                             
-                                                                        <input type="text" name="idmandrilObsoleto" value="<%=idmandril%>" hidden>
-                                                                 
                                                                         
+                                                                        <!-- Second row: Dropdown and Regresar button -->
+                                                                        <h5 class="mb-2 text-primary"><i class="fas fa-undo"></i> Regresar a Actividad Anterior</h5>
+                                                                        <div class="box-footer d-flex justify-content-start mb-3">
+                                                                                <div class="input-group mr-2" style="width: 450px;">
+                                                                                        <select class="form-control" name="actividadDestino" required>
+                                                                                                <option value="" disabled selected>Seleccionar actividad</option>
+                                                                                                <% if(typeof actividades !== 'undefined') { %>
+                                                                                                        <% actividades.forEach(function(actividad) { %>
+                                                                                                                <option value="<%= actividad.activ_seq %>"><%= actividad.activ_descripcion %></option>
+                                                                                                        <% }); %>
+                                                                                                <% } %>
+                                                                                </select>
+                                                                                
+                                                                                <button type="submit" class="btn btn-primary"
+                                                                                        onclick="$('form').attr('action', '/regresar');">Regresar</button>
+                                                                        </div>
+                                                                        
+                                                                        <input type="text" name="idmandrilObsoleto" value="<%=idmandril%>" hidden>
+                                                                        <input type="text" name="idmandrilRegresar" value="<%=idmandril%>" hidden>
+                                                                </form>
                                                         </div>
-                        
-                                                 </div>
+                                                </div>
                                         <%}%>
                         
                                 <br>
