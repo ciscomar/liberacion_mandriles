@@ -24,7 +24,7 @@ app.set('view_engine', 'ejs');
 //Carpeta publica
 app.use(express.static('public')); 
 
-//app.use(express.static('D:\\DEL\\liberacion_mandriles')); 
+app.use(express.static('D:\\DEL\\liberacion_mandriles')); 
 //app.use(express.static('C:\\test')); 
 //Requiriendo rutas
 const routes = require('./routes/routes');
